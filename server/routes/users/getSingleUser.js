@@ -8,7 +8,7 @@ const options = {
 };
 
 module.exports = async (req, res) => {
-    const { _id } = req.params;
+    const { email } = req.params;
     const client = await MongoClient(MONGO_URI, options);
     try {
       await client.connect();
@@ -16,11 +16,11 @@ module.exports = async (req, res) => {
       const db = client.db("akulla_belka");
       console.log("connected!");
   
-      await db.collection("users").findOne({ _id: ObjectId(_id) }, (err, result) => {
+      await db.collection("users").findOne({ email }, (err, result) => {
           console.log(result);
         result
-          ? res.status(200).json({ status: 200, _id, data: result })
-          : res.status(404).json({ status: 404, _id, data: "Not Found" });
+          ? res.status(200).json({ status: 200, email, data: result })
+          : res.status(404).json({ status: 404, email, data: "Not Found" });
         client.close();
         console.log("disconnected!");
       });
