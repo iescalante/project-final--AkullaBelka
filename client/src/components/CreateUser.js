@@ -1,14 +1,17 @@
 import React from "react";
 import Logo from '../assets/akullabelka_logo.svg';
+import {useHistory} from "react-router-dom";
 
 const CreateUser = () => {
+    const history = useHistory();
+
     const handleSubmit = (ev) => {
         ev.preventDefault();
-        alert("The form was submitted");
+        history.push("/main");
     }
     return (
         <>
-        <h1> First thing first!</h1>
+        <h1>We're going to need a little information about you!</h1>
         <img src={Logo} alt="akullabelka logo"/>
         <form onSubmit={handleSubmit}>
           <label>

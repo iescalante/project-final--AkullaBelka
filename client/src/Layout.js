@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from "./components/Login";
 import CreateUser from "./components/CreateUser";
-import Homepage from "./components/Homepage";
+import Main from "./components/Main";
 import Signout from "./components/Signout";
 import Error from "./components/Error";
 
@@ -16,8 +16,8 @@ const Layout = () => {
           <Route exact path="/create-user">
             <CreateUser />
           </Route>
-          <Route exact path="/homepage">
-            <Homepage />
+          <Route exact path="/main">
+            <Main />
           </Route>
           <Route exact path="/signout">
             <Signout />
