@@ -1,6 +1,7 @@
 import React from "react";
 import Logo from '../assets/akullabelka_logo.svg';
 import {useHistory} from "react-router-dom";
+import styled from 'styled-components';
 
 const CreateUser = () => {
     const history = useHistory();
@@ -10,53 +11,95 @@ const CreateUser = () => {
         history.push("/main");
     }
     return (
-        <>
-        <h1>We're going to need a little information about you!</h1>
-        <img src={Logo} alt="akullabelka logo"/>
-        <form onSubmit={handleSubmit}>
-          <label>
+        <Container>
+        <TopHeader>We're going to need a little information about you!</TopHeader>
+        <LogoImage src={Logo} alt="akullabelka logo"/>
+        <SigninForm onSubmit={handleSubmit}>
+          <LabelSignin>
               First Name:
-              <input type="text" name="first-name"/>
-          </label>
-          <label>
+              <InputSignin type="text" name="first-name"/>
+          </LabelSignin>
+          <LabelSignin>
               Last Name:
-              <input type="text" name="last-name"/>
-          </label>
-          <label>
+              <InputSignin type="text" name="last-name"/>
+          </LabelSignin>
+          <LabelSignin>
               Email:
-              <input type="email" name="email"/>
-          </label>
-          <label>
+              <InputSignin type="email" name="email"/>
+          </LabelSignin>
+          <LabelSignin>
               Password:
-              <input type="password" name="password"/>
-          </label>
-          <label>
-              Lender?
-              <div>
+              <InputSignin type="password" name="password"/>
+          </LabelSignin>
+          <LabelSignin>
+              Lender?:
+              <LenderTypeDiv>
                 <label for="true">Yes</label>
-                <input type="radio" name="lender-type" value="true"/>
-              </div>
-              <div>
+                <InputSignin type="radio" name="lender-type" value="true"/>
+              </LenderTypeDiv>
+              <LenderTypeDiv>
                 <label for="false">No</label>
-                <input type="radio" name="lender-type" value="false"/>
-              </div>
-          </label>
-          <label>
+                <InputSignin type="radio" name="lender-type" value="false"/>
+              </LenderTypeDiv>
+          </LabelSignin>
+          <LabelSignin>
               Starting Score:
-              <input type="number" name="score" value="500"/>
-          </label>
-          <label>
+              <InputSignin type="number" name="score" value="500"/>
+          </LabelSignin>
+          <LabelSignin>
               Loan Limit ($):
-              <input type="number" name="loan-limit" value="400"/>
-          </label>
-          <label>
+              <InputSignin type="number" name="loan-limit" value="400"/>
+          </LabelSignin>
+          <LabelSignin>
               Total Loaned ($):
-              <input type="number" name="total-loaned" value="0"/>
-          </label>
-          <input type="submit" value="Create Account"/>
-        </form>
-        </>
+              <InputSignin type="number" name="total-loaned" value="0"/>
+          </LabelSignin>
+          <InputSignin type="submit" value="Create Account"/>
+        </SigninForm>
+        </Container>
     )
 };
+const Container = styled.div`
+  display:flex;
+  flex-direction: column;
+  margin-bottom: 10vh;
+`;
+const TopHeader = styled.h1`
+  margin: 10px auto;
+  text-align:center;
+`
+const LogoImage = styled.img`
+  border-radius: 50%;
+  background-color:lightgrey;
+  width:200px;
+  margin: 0 auto 10px;
+`;
 
+const SigninForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+`;
+
+const LabelSignin = styled.label`
+  display:flex;
+  flex:1;
+  margin: 10px 0;
+`;
+const InputSignin = styled.input`
+  flex:2;
+  & input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+`;
+const LenderTypeDiv = styled.div`
+  display:flex;
+`
 export default CreateUser;
