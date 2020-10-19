@@ -1,5 +1,7 @@
 import React from 'react';
 import {useHistory} from "react-router-dom";
+import Spinner from '../Spinner';
+import styled from 'styled-components';
 
 const Signout = () => {
     const history = useHistory();
@@ -7,15 +9,24 @@ const Signout = () => {
         history.push("/")
     },3000);
     return (
-        <>
-        <h1>
+        <Container>
+        <Message>
           Thank you for using AkullaBelka!
-        </h1>
-        <h1>
+        </Message>
+        <Message>
           See you soon!
-        </h1>
-        </>
+        </Message>
+        <Spinner/>
+        </Container>
     )
 };
-
+const Container = styled.div`
+  display:flex;
+  flex-direction: column;
+  margin: 15px;
+`;
+const Message = styled.h1`
+  margin:20px auto;
+  font-size: 2rem;
+`;
 export default Signout;

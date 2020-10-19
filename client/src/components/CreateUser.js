@@ -54,7 +54,7 @@ const CreateUser = () => {
               Total Loaned ($):
               <InputSignin type="number" name="total-loaned" value="0"/>
           </LabelSignin>
-          <InputSignin type="submit" value="Create Account"/>
+          <InputSigninButton type="submit" value="Create Account"/>
         </SigninForm>
         </Container>
     )
@@ -98,6 +98,9 @@ const InputSignin = styled.input`
     -webkit-appearance: none;
     margin: 0;
   }
+`;
+const InputSigninButton = styled.input`
+  background:goldenrod;
 `;
 const LenderTypeDiv = styled.div`
   display:flex;

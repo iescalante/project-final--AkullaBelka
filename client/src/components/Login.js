@@ -20,17 +20,17 @@ const Login = () => {
         <LoginForm onSubmit ={handleLogin}>
           <LabelLogin>
               Email:
-              <InputEmail type="email" name="email"/>
+              <InputLogin type="email" name="email"/>
           </LabelLogin>
           <LabelLogin>
               Password:
-              <input type="password" name="password"/>
+              <InputLogin type="password" name="password"/>
           </LabelLogin>
           <InputLoginButton type="submit" value="Log In!"/>
         </LoginForm>
         <SigninDiv>
             <p>First Time here?</p>
-            <button onClick={handleSignin} type="button">Sign In!</button>
+            <SigninButton onClick={handleSignin} type="button">Sign In!</SigninButton>
         </SigninDiv>
         </Container>
     )
@@ -38,6 +38,8 @@ const Login = () => {
 const Container = styled.div`
   display:flex;
   flex-direction: column;
+  margin: 20px;
+  height:80vh;
 `;
 const LogoImage = styled.img`
   border-radius: 50%;
@@ -50,21 +52,26 @@ const LoginForm = styled.form`
   flex-direction: column;
   margin: 0 auto;
 `;
-const InputEmail = styled.input`
-  width:79%;
+const InputLogin = styled.input`
+  flex:2;
 `;
 const LabelLogin = styled.label`
   margin: 10px 0;
+  display:flex;
+  flex:1;
 `;
 
 const InputLoginButton = styled.input`
   margin: 10px 0;
+  background:goldenrod;
 `
 const SigninDiv = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-
+`;
+const SigninButton = styled.button`
+background:goldenrod;
 `
 
 export default Login;
