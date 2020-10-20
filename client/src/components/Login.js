@@ -2,31 +2,52 @@ import React from "react";
 import Logo from '../assets/akullabelka_logo.svg';
 import {useHistory} from "react-router-dom";
 import styled from "styled-components";
+import { AppContext } from "../AppContext";
 
 const Login = () => {
-    const history = useHistory();
+  const {email, setEmail, password, setPassword,setUserData} = React.useContext(AppContext);
+  const history = useHistory();
+  const [error, setError] = React.useState("");
+  console.log(email,password);
 
-    const handleLogin = (ev) => {
-        ev.preventDefault();
+  const handleLogin = (ev) => {
+    ev.preventDefault();
+    fetch(`/users/${email}/${password}`)
+    .then((res) => res.json())
+    .then((responseBody) => {
+      console.log(responseBody);
+      if (responseBody.user) {
+        setUserData({currentUser:responseBody.user});
         history.push("/main");
-    }
-    const handleSignin = (ev)=>{
-        ev.preventDefault();
-        history.push("/create-user");
-    }
-    return (
-        <Container>
-        <LogoImage src={Logo} alt="akullabelka logo"/>
-        <LoginForm onSubmit ={handleLogin}>
-          <LabelLogin>
-              Email:
-              <InputLogin type="email" name="email"/>
-          </LabelLogin>
-          <LabelLogin>
-              Password:
-              <InputLogin type="password" name="password"/>
-          </LabelLogin>
-          <InputLoginButton type="submit" value="Log In!"/>
+      } else{
+          setError("User not found");
+        }
+    })
+  };
+  const changeEmail = (ev) => {
+    setEmail(ev.target.value);
+  }
+  const changePassword = (ev) => {
+    setPassword(ev.target.value);
+  }
+  const handleSignin = (ev)=>{
+    ev.preventDefault();
+    history.push("/create-user");
+  }
+  return (
+    <Container>
+      <LogoImage src={Logo} alt="akullabelka logo"/>
+      <LoginForm onSubmit ={handleLogin}>
+        <LabelLogin>
+          Email:
+          <InputLogin onChange ={changeEmail} type="email" name="email" value={email}/>
+        </LabelLogin>
+        <LabelLogin>
+          Password:
+          <InputLogin onChange={changePassword} type="password" name="password" value={password}/>
+        </LabelLogin>
+      <InputLoginButton type="submit" value="Log In!"/>
+        {error !== "" && <ErrorMsg>{error}</ErrorMsg>}
         </LoginForm>
         <SigninDiv>
             <p>First Time here?</p>
@@ -72,6 +93,10 @@ const SigninDiv = styled.div`
 `;
 const SigninButton = styled.button`
 background:goldenrod;
+`;
+const ErrorMsg = styled.p`
+  color: red;
+  font-weight:bold;
 `
 
 export default Login;

@@ -5,7 +5,7 @@ const getSingleUser = require("./getSingleUser");
 
 users.get("/", getUsers);
 users.post("/",postUser);
-users.get("/:email", getSingleUser);
+users.get("/:email/:password", getSingleUser);
 
 
 module.exports = users;

@@ -5,6 +5,20 @@ import styled from 'styled-components';
 
 const CreateUser = () => {
     const history = useHistory();
+    const [newUser, setNewUser] = React.useState({
+      firstName:"",
+      lastName:"",
+      email:"",
+      password:"",
+      lenderProfile:{
+        lender:false,
+        usersId:"",
+        totalLoan:0,
+        availableLoan:0,
+      },
+      totalLoaned:0,
+      loanLimit:400
+    })
 
     const handleSubmit = (ev) => {
         ev.preventDefault();
@@ -34,11 +48,11 @@ const CreateUser = () => {
           <LabelSignin>
               Lender?:
               <LenderTypeDiv>
-                <label for="true">Yes</label>
+                <label htmlFor="true">Yes</label>
                 <InputSignin type="radio" name="lender-type" value="true"/>
               </LenderTypeDiv>
               <LenderTypeDiv>
-                <label for="false">No</label>
+                <label htmlFor="false">No</label>
                 <InputSignin type="radio" name="lender-type" value="false"/>
               </LenderTypeDiv>
           </LabelSignin>

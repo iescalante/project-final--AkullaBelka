@@ -1,13 +1,23 @@
 import React from 'react';
-import {Link} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import styled from 'styled-components';
+import { AppContext } from "../AppContext";
 
 const Homepage = () => {
+  const history = useHistory();
+  const { userData, setUserData} = React.useContext(AppContext);
+  console.log(userData);
+
+  const handleSignout = (ev) => {
+    ev.preventDefault();
+    setUserData({currentUser:{}});
+    history.push("/signout");
+  } 
     return (
         <Container>
           <Header>
-          <TopMessage>Welcome, First Name!</TopMessage>
-          <StyledLink to="/signout">Sign Out</StyledLink>
+            <TopMessage>Welcome, {userData.currentUser.firstName}!</TopMessage>
+            <SignoutLink onClick={handleSignout}>Sign Out</SignoutLink>
           </Header>
         <div>
           <ul>
@@ -34,10 +44,11 @@ const TopMessage = styled.h1`
   flex:8;
   font-size: 2rem;
 `;
-const StyledLink = styled(Link)`
+const SignoutLink = styled.a`
   color:black;
   text-decoration: none;
   flex:1;
   margin:auto;
+  cursor: pointer;
 `;
 export default Homepage;
