@@ -20,7 +20,7 @@ const Login = () => {
         setUserData({currentUser:responseBody.user});
         history.push("/main");
       } else{
-          setError("User not found");
+          setError("User not found. Wrong email/password. Try Again!");
         }
     })
   };
@@ -50,7 +50,8 @@ const Login = () => {
         {error !== "" && <ErrorMsg>{error}</ErrorMsg>}
         </LoginForm>
         <SigninDiv>
-            <p>First Time here?</p>
+            <SigninText>First Time Here?</SigninText>
+            <SigninText>Come on in and try us!</SigninText>
             <SigninButton onClick={handleSignin} type="button">Sign In!</SigninButton>
         </SigninDiv>
         </Container>
@@ -81,11 +82,10 @@ const LabelLogin = styled.label`
   display:flex;
   flex:1;
 `;
-
 const InputLoginButton = styled.input`
   margin: 10px 0;
   background:goldenrod;
-`
+`;
 const SigninDiv = styled.div`
   display: flex;
   flex-direction: column;
@@ -95,8 +95,14 @@ const SigninButton = styled.button`
 background:goldenrod;
 `;
 const ErrorMsg = styled.p`
-  color: red;
+  color: #560000;
+  font-weight: bold;
+  width: 250px;
+  text-align: center;
+  background-color: #e2a338;
+`;
+const SigninText = styled.p`
   font-weight:bold;
-`
-
+  text-align:center;
+`;
 export default Login;

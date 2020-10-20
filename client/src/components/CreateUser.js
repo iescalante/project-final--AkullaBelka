@@ -2,14 +2,17 @@ import React from "react";
 import Logo from '../assets/akullabelka_logo.svg';
 import {useHistory} from "react-router-dom";
 import styled from 'styled-components';
+import { AppContext } from "../AppContext";
 
 const CreateUser = () => {
+    const {setUserData} = React.useContext(AppContext);
     const history = useHistory();
     const [newUser, setNewUser] = React.useState({
       firstName:"",
       lastName:"",
       email:"",
       password:"",
+      score: 500,
       lenderProfile:{
         lender:false,
         usersId:"",
@@ -19,11 +22,40 @@ const CreateUser = () => {
       totalLoaned:0,
       loanLimit:400
     })
-
+    const handleChange =(ev) =>{
+      setNewUser({...newUser,
+        [ev.target.name]: ev.target.value})
+    }
     const handleSubmit = (ev) => {
         ev.preventDefault();
-        history.push("/main");
-    }
+        console.log(newUser);
+        const requestOptions = {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            firstName:newUser.firstName,
+            lastName:newUser.lastName,
+            email:newUser.email,
+            password:newUser.password,
+            score:newUser.score,
+            lenderProfile:{
+            lender:newUser.lenderProfile.lender,
+            usersId:newUser.lenderProfile.usersId,
+            totalLoan:newUser.lenderProfile.totalLoan,
+            availableLoan:newUser.lenderProfile.availableLoan,
+            },
+            totalLoaned:newUser.totalLoaned,
+            loanLimit:newUser.loanLimit,
+            })
+      };
+      fetch('/users', requestOptions)
+          .then(response => response.json())
+          .then((responseBody) => {
+            setUserData({currentUser: responseBody.user});
+            history.push("/main");
+          });
+        };
+
     return (
         <Container>
         <TopHeader>We're going to need a little information about you!</TopHeader>
@@ -31,42 +63,42 @@ const CreateUser = () => {
         <SigninForm onSubmit={handleSubmit}>
           <LabelSignin>
               First Name:
-              <InputSignin type="text" name="first-name"/>
+              <InputSignin onChange={handleChange} type="text" name="firstName" value={newUser.firstName}/>
           </LabelSignin>
           <LabelSignin>
               Last Name:
-              <InputSignin type="text" name="last-name"/>
+              <InputSignin onChange={handleChange} type="text" name="lastName"value={newUser.lastName} />
           </LabelSignin>
           <LabelSignin>
               Email:
-              <InputSignin type="email" name="email"/>
+              <InputSignin onChange={handleChange} type="email" name="email" value={newUser.email}/>
           </LabelSignin>
           <LabelSignin>
               Password:
-              <InputSignin type="password" name="password"/>
+              <InputSignin onChange={handleChange} type="password" name="password" value={newUser.password}/>
           </LabelSignin>
           <LabelSignin>
               Lender?:
               <LenderTypeDiv>
                 <label htmlFor="true">Yes</label>
-                <InputSignin type="radio" name="lender-type" value="true"/>
+                <InputSignin type="radio" name="lender" value="true" readOnly={true}/>
               </LenderTypeDiv>
               <LenderTypeDiv>
                 <label htmlFor="false">No</label>
-                <InputSignin type="radio" name="lender-type" value="false"/>
+                <InputSignin type="radio" name="lender" value="false" readOnly={true}/>
               </LenderTypeDiv>
           </LabelSignin>
           <LabelSignin>
               Starting Score:
-              <InputSignin type="number" name="score" value="500"/>
+              <InputSignin type="number" name="score" value="500" readOnly={true}/>
           </LabelSignin>
           <LabelSignin>
               Loan Limit ($):
-              <InputSignin type="number" name="loan-limit" value="400"/>
+              <InputSignin type="number" name="loanLimit" value="400"readOnly={true}/>
           </LabelSignin>
           <LabelSignin>
               Total Loaned ($):
-              <InputSignin type="number" name="total-loaned" value="0"/>
+              <InputSignin type="number" name="totalLoaned" value="0"readOnly={true}/>
           </LabelSignin>
           <InputSigninButton type="submit" value="Create Account"/>
         </SigninForm>

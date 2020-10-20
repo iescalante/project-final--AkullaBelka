@@ -18,10 +18,10 @@ module.exports = async (req, res) => {
   
       await db.collection("users").insertOne(req.body);
     
-      res.status(201).json({ status: 201, data: req.body });
+      res.status(201).json({ status: 201, user: req.body });
     } catch (err) {
       console.log(err.stack);
-      res.status(500).json({ status: 500, data: req.body, message: err.message });
+      res.status(500).json({ status: 500, message: err.message });
     }
     client.close();
     console.log("disconnected!");
