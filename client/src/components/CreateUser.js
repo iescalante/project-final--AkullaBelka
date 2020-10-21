@@ -1,8 +1,9 @@
 import React from "react";
 import Logo from '../assets/akullabelka_logo.svg';
-import {useHistory} from "react-router-dom";
 import styled from 'styled-components';
+import {useHistory} from "react-router-dom";
 import { AppContext } from "../AppContext";
+import Container from '../reusable-components/Container';
 
 const CreateUser = () => {
     const {setUserData} = React.useContext(AppContext);
@@ -57,27 +58,27 @@ const CreateUser = () => {
         };
 
     return (
-        <Container>
-        <TopHeader>We're going to need a little information about you!</TopHeader>
-        <LogoImage src={Logo} alt="akullabelka logo"/>
-        <SigninForm onSubmit={handleSubmit}>
-          <LabelSignin>
+        <StyledContainer>
+          <TopHeader>We're going to need a little information about you!</TopHeader>
+          <LogoImage src={Logo} alt="akullabelka logo"/>
+          <SigninForm onSubmit={handleSubmit}>
+            <LabelSignin>
               First Name:
-              <InputSignin onChange={handleChange} type="text" name="firstName" value={newUser.firstName}/>
-          </LabelSignin>
-          <LabelSignin>
+            <InputSignin onChange={handleChange} type="text" name="firstName" value={newUser.firstName}/>
+            </LabelSignin>
+            <LabelSignin>
               Last Name:
               <InputSignin onChange={handleChange} type="text" name="lastName"value={newUser.lastName} />
-          </LabelSignin>
-          <LabelSignin>
+            </LabelSignin>
+            <LabelSignin>
               Email:
               <InputSignin onChange={handleChange} type="email" name="email" value={newUser.email}/>
-          </LabelSignin>
-          <LabelSignin>
+            </LabelSignin>
+            <LabelSignin>
               Password:
               <InputSignin onChange={handleChange} type="password" name="password" value={newUser.password}/>
-          </LabelSignin>
-          <LabelSignin>
+            </LabelSignin>
+            <LabelSignin>
               Lender?:
               <LenderTypeDiv>
                 <label htmlFor="true">Yes</label>
@@ -87,28 +88,26 @@ const CreateUser = () => {
                 <label htmlFor="false">No</label>
                 <InputSignin type="radio" name="lender" value="false" readOnly={true}/>
               </LenderTypeDiv>
-          </LabelSignin>
-          <LabelSignin>
+            </LabelSignin>
+            <LabelSignin>
               Starting Score:
               <InputSignin type="number" name="score" value="500" readOnly={true}/>
-          </LabelSignin>
-          <LabelSignin>
+            </LabelSignin>
+            <LabelSignin>
               Loan Limit ($):
               <InputSignin type="number" name="loanLimit" value="400"readOnly={true}/>
-          </LabelSignin>
-          <LabelSignin>
+            </LabelSignin>
+            <LabelSignin>
               Total Loaned ($):
               <InputSignin type="number" name="totalLoaned" value="0"readOnly={true}/>
-          </LabelSignin>
-          <InputSigninButton type="submit" value="Create Account"/>
-        </SigninForm>
-        </Container>
+            </LabelSignin>
+            <InputSigninButton type="submit" value="Create Account"/>
+          </SigninForm>
+        </StyledContainer>
     )
 };
-const Container = styled.div`
-  display:flex;
-  flex-direction: column;
-  margin-bottom: 10vh;
+const StyledContainer = styled(Container)`
+  margin: 15px 0;
 `;
 const TopHeader = styled.h1`
   margin: 10px auto;
@@ -117,16 +116,14 @@ const TopHeader = styled.h1`
 const LogoImage = styled.img`
   border-radius: 50%;
   background-color:lightgrey;
-  width:200px;
+  width: 150px;
   margin: 0 auto 10px;
 `;
-
 const SigninForm = styled.form`
   display: flex;
   flex-direction: column;
   margin: 0 auto;
 `;
-
 const LabelSignin = styled.label`
   display:flex;
   flex:1;
@@ -150,5 +147,5 @@ const InputSigninButton = styled.input`
 `;
 const LenderTypeDiv = styled.div`
   display:flex;
-`
+`;
 export default CreateUser;

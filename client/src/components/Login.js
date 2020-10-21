@@ -1,8 +1,9 @@
 import React from "react";
+import styled from "styled-components";
 import Logo from '../assets/akullabelka_logo.svg';
 import {useHistory} from "react-router-dom";
-import styled from "styled-components";
 import { AppContext } from "../AppContext";
+import Container from '../reusable-components/Container';
 
 const Login = () => {
   const {email, setEmail, password, setPassword,setUserData} = React.useContext(AppContext);
@@ -57,12 +58,6 @@ const Login = () => {
         </Container>
     )
 };
-const Container = styled.div`
-  display:flex;
-  flex-direction: column;
-  margin: 20px;
-  height:80vh;
-`;
 const LogoImage = styled.img`
   border-radius: 50%;
   background-color:lightgrey;
