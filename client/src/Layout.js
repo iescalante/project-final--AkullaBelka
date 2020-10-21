@@ -3,6 +3,9 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from "./components/Login";
 import CreateUser from "./components/CreateUser";
 import Main from "./components/Main";
+import Profile from './components/Profile';
+import GetALoan from './components/GetLoan';
+import Transactions from './components/Transactions';
 import Signout from "./components/Signout";
 import Error from "./components/Error";
 
@@ -18,6 +21,15 @@ const Layout = () => {
           </Route>
           <Route exact path="/main">
             <Main />
+          </Route>
+          <Route exact path="/main/profile">
+            <Profile />
+          </Route>
+          <Route exact path="/main/get-loan">
+            <GetALoan />
+          </Route>
+          <Route exact path="/main/transactions">
+            <Transactions />
           </Route>
           <Route exact path="/signout">
             <Signout />
