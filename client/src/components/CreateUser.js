@@ -82,7 +82,7 @@ const CreateUser = () => {
               Lender?:
               <LenderTypeDiv>
                 <label htmlFor="true">Yes</label>
-                <InputSignin type="radio" name="lender" value="true" readOnly={true}/>
+                <InputSignin type="radio" name="lender" value="true"  readOnly={true}/>
               </LenderTypeDiv>
               <LenderTypeDiv>
                 <label htmlFor="false">No</label>
@@ -91,15 +91,15 @@ const CreateUser = () => {
             </LabelSignin>
             <LabelSignin>
               Starting Score:
-              <InputSignin type="number" name="score" value="500" readOnly={true}/>
+              <DisabledInput type="number" name="score" value="500" disabled={true}/>
             </LabelSignin>
             <LabelSignin>
               Loan Limit ($):
-              <InputSignin type="number" name="loanLimit" value="400"readOnly={true}/>
+              <DisabledInput type="number" name="loanLimit" value="400" disabled={true}/>
             </LabelSignin>
             <LabelSignin>
               Total Loaned ($):
-              <InputSignin type="number" name="totalLoaned" value="0"readOnly={true}/>
+              <DisabledInput type="number" name="totalLoaned" value="0" disabled={true}/>
             </LabelSignin>
             <InputSigninButton type="submit" value="Create Account"/>
           </SigninForm>
@@ -142,6 +142,10 @@ const InputSignin = styled.input`
     margin: 0;
   }
 `;
+const DisabledInput = styled(InputSignin)`
+  cursor: not-allowed;
+`;
+
 const InputSigninButton = styled.input`
   background:goldenrod;
 `;
