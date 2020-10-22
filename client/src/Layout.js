@@ -8,8 +8,11 @@ import GetALoan from './components/GetLoan';
 import Transactions from './components/Transactions';
 import Signout from "./components/Signout";
 import Error from "./components/Error";
+import { AppContext } from './AppContext';
 
 const Layout = () => {
+  const { userData } = React.useContext(AppContext);
+
   return (
     <Router>
         <Switch>
@@ -19,18 +22,24 @@ const Layout = () => {
           <Route exact path="/create-user">
             <CreateUser />
           </Route>
-          <Route exact path="/main">
-            <Main />
-          </Route>
-          <Route exact path="/main/profile">
-            <Profile />
-          </Route>
-          <Route exact path="/main/get-loan">
-            <GetALoan />
-          </Route>
-          <Route exact path="/main/transactions">
-            <Transactions />
-          </Route>
+          { userData.currentUser.email &&
+            (
+            <>
+              <Route exact path="/main">
+                <Main />
+              </Route>
+              <Route exact path="/main/profile">
+                <Profile />
+              </Route>
+              <Route exact path="/main/get-loan">
+                <GetALoan />
+              </Route>
+              <Route exact path="/main/transactions">
+                <Transactions />
+              </Route>
+            </>
+            )
+          }
           <Route exact path="/signout">
             <Signout />
           </Route>
