@@ -12,10 +12,13 @@ const Header = ({pageTitle}) => {
     setUserData({currentUser:{}});
     history.push("/signout");
   }
+  const handleGoMain = () => {
+    history.push("/main");
+  }
   return (
     <>
       <Container>
-        <LogoImage src={Logo} />
+        <LogoImage src={Logo} onClick={handleGoMain} />
         <TopMessage>{pageTitle}</TopMessage>
         <SignoutLink onClick={handleSignout}>Sign Out</SignoutLink>
       </Container>
@@ -30,6 +33,7 @@ const LogoImage = styled.img`
   background-color: lightgrey;
   width: 50px;
   margin-right: 15px;
+  cursor: pointer;
 `;
 const TopMessage = styled.h1`
   flex:8;
