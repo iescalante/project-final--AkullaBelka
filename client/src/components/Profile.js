@@ -18,6 +18,7 @@ const Profile = () => {
         <UserInfo>SCORE : {userData.currentUser.score}</UserInfo>
         <UserInfo>TOTAL LOANED : {userData.currentUser.totalLoaned}</UserInfo>
         <UserInfo>LOAN LIMIT : {userData.currentUser.loanLimit}</UserInfo>
+        <UserInfo>Lender? {userData.currentUser.lenderProfile.lender ? "Yes" : "No"}</UserInfo>
       </ProfileDiv>
     </Container>
   )
@@ -26,6 +27,7 @@ const ProfileDiv = styled.div`
   display:flex;
   flex-direction: column;
   color: black;
+  margin-top: 30px;
 `;
 const UserInfo = styled.h2`
   font-weight: bold;
