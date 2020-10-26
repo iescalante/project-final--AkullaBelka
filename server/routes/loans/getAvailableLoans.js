@@ -9,13 +9,19 @@ const options = {
 
 module.exports = async (req, res) => {
     const client = await MongoClient(MONGO_URI, options);
-
+    const { loanAmount } = req.params;
+    console.log(loanAmount);
     try {
         await client.connect();
         const db = client.db("akulla_belka");
         console.log("connected!");
 
-        const data = await db.collection("users").find().toArray();
+        const data = await db.collection("users").find({ 
+          $and: [
+            { "lenderProfile.lender" : true },
+            { "lenderProfile.availableLoan": { $gte: Number(loanAmount) } }
+          ]
+        }).toArray();
 
         res.status(200).json({
             status:200,
