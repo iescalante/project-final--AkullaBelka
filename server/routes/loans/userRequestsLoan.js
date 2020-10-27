@@ -18,8 +18,9 @@ module.exports = async (req, res) => {
         console.log("connected!");
 
         await db.collection("users").findOneAndUpdate({ _id: ObjectID(userId) },{$inc: {totalLoaned: loanAmount}});
-        // await db.collection("users").findOneAndUpdate({ _id: ObjectID(lenderId) },
-        // {$set: {"lenderProfile.usersId":userId,"lenderProfile.totalLoan": loanAmount,"lenderProfile.availableLoan": loanAmount}});
+        await db.collection("users").findOneAndUpdate({_id: ObjectID(lenderId)}, {$inc:{"lenderProfile.totalLoan": loanAmount}});
+        await db.collection("users").findOneAndUpdate({_id: ObjectID(lenderId)}, {$push:{"lenderProfile.usersId": {userId, loanAmount}}});
+
         res.status(200).json({
             status:200,
             userId,

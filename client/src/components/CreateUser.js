@@ -16,7 +16,7 @@ const CreateUser = () => {
       score: 500,
       lenderProfile:{
         lender:false,
-        usersId:[{}],
+        usersId:[],
         totalLoan:0,
         availableLoan:0,
       },
