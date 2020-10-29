@@ -19,6 +19,7 @@ const Login = () => {
       console.log(responseBody);
       if (responseBody.user) {
         setUserData({currentUser:responseBody.user});
+        setError("");
         history.push("/main");
       } else{
           setError("User not found. Wrong email/password. Try Again!");
