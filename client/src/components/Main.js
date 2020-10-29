@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import MainHeader from '../reusable-components/MainHeader';
 import Container from '../reusable-components/Container';
 import { Link } from 'react-router-dom';
+import { AppContext } from '../AppContext';
 
 const Homepage = () => {
   const [profileVisible, setProfileVisible] = React.useState(false);
