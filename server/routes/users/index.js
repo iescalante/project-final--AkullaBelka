@@ -1,11 +1,11 @@
 const users = require("express").Router();
 const getUsers = require("./getUsers");
-const postUser = require("./postUser");
-const getSingleUser = require("./getSingleUser");
+const postNewUser = require("./postNewUser");
+const validateSingleUser = require("./validateSingleUser");
 
 users.get("/", getUsers);
-users.post("/",postUser);
-users.get("/:email/:password", getSingleUser);
+users.post("/",postNewUser);
+users.get("/:email/:password", validateSingleUser);
 
 
 module.exports = users;

@@ -17,7 +17,6 @@ module.exports = async (req, res) => {
       console.log("connected!");
   
       await db.collection("users").insertOne(req.body);
-    
       res.status(201).json({ status: 201, user: req.body });
     } catch (err) {
       console.log(err.stack);
