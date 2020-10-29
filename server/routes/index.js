@@ -1,6 +1,7 @@
 const routes = require("express").Router();
 const users = require("./users");
 const loans = require("./loans");
+const transactions = require("./transactions");
 require("dotenv").config();
 // const companies = require("./companies");
 // const cart = require("./cart");
@@ -20,5 +21,6 @@ routes.get("/", (req, res) => {
 });
 routes.use("/users", users);
 routes.use("/loans", loans);
+routes.use("/transactions", transactions);
 
 module.exports = routes;
