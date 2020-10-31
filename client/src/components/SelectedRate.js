@@ -2,11 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 
 const SelectedRate = ({availableRate, selectedRate, setSelectedRate}) => {
-  console.log(availableRate.rate);
   const selectRate = (ev) => {
     ev.preventDefault();
     setSelectedRate(ev.target.value);
   };
+  
   return (
     <SingleRateForm>
       <InfoLine>Rate: {availableRate.rate}</InfoLine>
@@ -26,6 +26,8 @@ const InfoLine = styled.p`
   font-weight:bold;
 `;
 const SelectRateButton = styled.button`
+  margin: 10px auto;
+  width: fit-content;
   background:goldenrod;
   cursor: pointer;
 `;
