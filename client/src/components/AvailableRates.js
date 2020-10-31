@@ -8,9 +8,11 @@ import Spinner from '../Spinner';
 const AvailableRates = ({availableRate, setAvailableRate, selectedRate, setSelectedRate, loan, setLoan}) => {
   const { userData } = React.useContext(AppContext);
   const [isLoading, setIsLoading] = React.useState(false);
+
   const changeLoanAmount = (ev) => {
     setLoan(ev.target.value);
   };
+  
   const getRate = (ev) => {
     ev.preventDefault();
     setIsLoading(true);
@@ -54,6 +56,7 @@ const GetRateLabel = styled.label`
   margin: 10px 0;
   display:flex;
   flex:1;
+  font-weight:bold;
 `;
 const LoanInput = styled.input`
   flex:2;
@@ -69,8 +72,10 @@ const LoanInput = styled.input`
   }
 `;
 const GetRateButton = styled.button`
-  margin: 10px 0;
+  margin: 10px auto;
+  width: fit-content;
   background:goldenrod;
+  cursor:pointer;
 `;
 const RatesDiv = styled.div`
   display:flex;
