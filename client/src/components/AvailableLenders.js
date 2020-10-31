@@ -1,79 +1,75 @@
 import React from 'react';
 import styled from 'styled-components';
 import Container from '../reusable-components/Container';
-// import SelectedLender from './SelectedLender';
+import SelectedLender from './SelectedLender';
+import Spinner from '../Spinner';
 import { AppContext } from '../AppContext';
 
-const AvailableRates = () => {
-  const [availableRate, setAvailableRate] = React.useState(null);
-  const [loan, setLoan] = React.useState(0);
-  const [selectedRate, setSelectedRate] = React.useState(0);
-  const { userData } = React.useContext(AppContext);
+const AvailableLenders = ({loan, availableLenders, setAvailableLenders, selectedLender, setSelectedLender}) => {
+  const [isLoading, setIsLoading] = React.useState(false);
 
-  const changeLoanAmount = (ev) => {
-    setLoan(ev.target.value);
-  };
-
-  const getRate = (ev) => {
+  const getLenders = (ev) => {
     ev.preventDefault();
-    fetch(`/rates/${userData.currentUser.score}/${loan}`)
+    setIsLoading(true);
+    fetch(`/loans/${loan}`)
     .then(res => res.json())
     .then(responseBody => {
-      console.log(responseBody.availableRate)
-      setAvailableRate(responseBody.availableRate);
+      setAvailableLenders(
+        responseBody.data.map((lender)=> { 
+          return {
+            lenderId: lender._id,
+            availableLoan: lender.lenderProfile.availableLoan,
+            totalLoan: lender.lenderProfile.totalLoan
+          }
+        })
+      );
+      setIsLoading(false);
     })
   };
-
+  console.log(availableLenders);
   return(
     <Container>
-      <GetRateForm onSubmit={getRate}>
-        <GetRateLabel>
-          How much money do you need?:
-          <LoanInput onChange ={changeLoanAmount} type="number" name="loan" value={loan}/>
-        </GetRateLabel>
-        <GetRateButton type="submit">Get a Rate!</GetRateButton>
-      </GetRateForm>
-      <RatesDiv>
-        {availableRate && 
-          <SelectedRate 
-            availableRate={availableRate}
-            selectedRate={selectedRate}
-            setSelectedRate={setSelectedRate}
-          />
-        }
-      </RatesDiv>
+      <GetLendersForm onSubmit={getLenders}>
+        <GetLendersLabel>Select your Lender here</GetLendersLabel>
+        <GetLendersButton type="submit">Get Lenders!</GetLendersButton>
+      </GetLendersForm>
+      {isLoading ? (<Spinner/>) : (
+        <LendersDiv>
+          {availableLenders && availableLenders.map((lender) => {
+            return (
+              <SelectedLender
+                lenderId={lender.lenderId}
+                availableLoan={lender.availableLoan}
+                totalLoan={lender.totalLoan}
+                selectedLender={selectedLender}
+                setSelectedLender={setSelectedLender}
+              />)
+          })}
+        </LendersDiv>
+      )}
     </Container>
   )
 };
-const GetRateForm = styled.form`
+const GetLendersForm = styled.form`
   display: flex;
   flex-direction: column;
   margin: 0 auto;
 `;
-const GetRateLabel = styled.label`
+const GetLendersLabel = styled.label`
   margin: 10px 0;
   display:flex;
   flex:1;
+  font-weight:bold;
 `;
-const LoanInput = styled.input`
-  flex:2;
-  & input::-webkit-outer-spin-button,
-  input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-  &::-webkit-outer-spin-button,
-  &::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-`;
-const GetRateButton = styled.button`
-  margin: 10px 0;
+const GetLendersButton = styled.button`
+  margin: 10px auto;
+  width: fit-content;
   background:goldenrod;
+  cursor: pointer;
 `;
-const RatesDiv = styled.div`
+const LendersDiv = styled.div`
   display:flex;
   font-size:0.9em;
+  text-align:center;
 `;
-export default AvailableRates;
+export default AvailableLenders;
