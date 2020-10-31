@@ -8,8 +8,8 @@ const GetLoan = () => {
   return(
     <Container>
       <Header pageTitle={"Loan Application Page"}/>
-      <div>This is where you apply to get a loan!</div>
       <AvailableRates/>
+      <div>This is where you apply to get a loan!</div>
     </Container>
   )
 };
