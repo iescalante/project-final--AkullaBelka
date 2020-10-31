@@ -30,8 +30,8 @@ module.exports = async (req, res) => {
       let query = {minScore: {$lte: Number(score)}, maxScore: {$gte:Number(score)}, minLoan: {$lte: Number(loanAmount)}, maxLoan: {$gte: Number(loanAmount)}};
       console.log(query);
 
-      const availableRates = await db.collection("rates").findOne(query);
-      res.status(200).json({availableRates});
+      const availableRate = await db.collection("rates").findOne(query);
+      res.status(200).json({availableRate});
       
       client.close();
       console.log("disconnected!");
