@@ -5,6 +5,6 @@ const filterByScoreAndLoan = require("./filterByScoreAndLoan");
 
 rates.post("/", postNewRate);
 rates.get("/", getAllRates);
-rates.get("/:score", filterByScoreAndLoan);
+rates.get("/:score/:loanAmount", filterByScoreAndLoan);
 
 module.exports = rates;
