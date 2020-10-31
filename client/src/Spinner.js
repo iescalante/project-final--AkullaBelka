@@ -8,17 +8,12 @@ const Spinner = () => {
     </Wrapper>
   );
 };
-
-export default Spinner;
-
 const Wrapper = styled.div`
   display: flex;
   flex-flow: column;
   justify-content: center;
   align-items: center;
-  height: 80vh;
 `;
-
 const Loader = styled.div`
   color: goldenrod;
   font-size: 20px;
@@ -106,3 +101,4 @@ const Loader = styled.div`
     }
   }
 `;
+export default Spinner;
