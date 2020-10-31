@@ -40,8 +40,6 @@ module.exports = async (req, res) => {
             selectedRate,
             daysToPay,
         });
-        // client.close();
-        // console.log("disconnected!");
     } catch(err) {
         console.log(err.stack);
         res.status(500).json({status: 500, message: err.message})
