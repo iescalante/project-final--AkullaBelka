@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Transaction = () => {
+const Transaction = ({transaction}) => {
   return (
     <TransactionList>
-      <TransactionHeader>28 October 2020</TransactionHeader>
-      <TransactionHeader>200</TransactionHeader>
-      <TransactionHeader>28 November 2020</TransactionHeader>
-      <TransactionHeader>15%</TransactionHeader>
+      <TransactionHeader>{transaction.transactionDate}</TransactionHeader>
+      <TransactionHeader>{transaction.loanAmount}</TransactionHeader>
+      <TransactionHeader>{transaction.dueDate}</TransactionHeader>
+      <TransactionHeader>{(transaction.selectedRate)*100}%</TransactionHeader>
     </TransactionList>
   )
 };
@@ -16,5 +16,6 @@ const TransactionList = styled.ul`
 `;
 const TransactionHeader = styled.li`
   flex:1;
+  margin: 10px;
 `;
 export default Transaction;
