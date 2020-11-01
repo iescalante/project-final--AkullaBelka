@@ -8,23 +8,31 @@ const Homepage = () => {
   const [profileVisible, setProfileVisible] = React.useState(false);
   const [loanVisible, setLoanVisible] = React.useState(false);
   const [transactionVisible, setTransactionVisible] = React.useState(false);
-
+  const [paymentVisible, setPaymentVisible] = React.useState(false);
+//Hovering on Links
   const enterProfile = () => {
     setProfileVisible(true);
   };
   const enterLoan = () => {
     setLoanVisible(true);
   };
+  const enterPayment = () => {
+    setPaymentVisible(true);
+  };
   const enterTransaction = () => {
     setTransactionVisible(true);
   };
-  const leaveProfile = (e) => {
+//Hovering away from Links
+  const leaveProfile = () => {
     setProfileVisible(false);
   };
-  const leaveLoan = (e) => {
+  const leaveLoan = () => {
     setLoanVisible(false);
   };
-  const leaveTransaction = (e) => {
+  const leavePayment = () => {
+    setPaymentVisible(false);
+  };
+  const leaveTransaction = () => {
     setTransactionVisible(false);
   };
 
@@ -44,6 +52,12 @@ const Homepage = () => {
               <StyledLink onMouseEnter={enterLoan} onMouseLeave={leaveLoan} to="/main/get-loan">Get a Loan</StyledLink>
               <LinkInformation style={{visibility: loanVisible ? "visible" : "hidden"}}>
                 Request a loan to available users with available rates depending on personal score
+              </LinkInformation>
+            </StyledLinkContainer>
+            <StyledLinkContainer>
+              <StyledLink onMouseEnter={enterPayment} onMouseLeave={leavePayment} to="/main/make-payment">Make A Payment</StyledLink>
+              <LinkInformation style={{visibility: paymentVisible ? "visible" : "hidden"}}>
+                Make a payment to your loans and clear your outstanding debts
               </LinkInformation>
             </StyledLinkContainer>
             <StyledLinkContainer>

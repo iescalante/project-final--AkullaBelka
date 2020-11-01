@@ -5,6 +5,7 @@ import CreateUser from "./components/CreateUser";
 import Main from "./components/Main";
 import Profile from './components/Profile';
 import GetALoan from './components/GetLoan';
+import MakeAPayment from './components/MakeAPayment';
 import Transactions from './components/Transactions';
 import Signout from "./components/Signout";
 import Error from "./components/Error";
@@ -33,6 +34,9 @@ const Layout = () => {
               </Route>
               <Route exact path="/main/get-loan">
                 <GetALoan />
+              </Route>
+              <Route exact path="/main/make-payment">
+                <MakeAPayment />
               </Route>
               <Route exact path="/main/transactions">
                 <Transactions />
