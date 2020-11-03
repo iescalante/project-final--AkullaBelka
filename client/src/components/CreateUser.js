@@ -7,6 +7,7 @@ import Container from '../reusable-components/Container';
 
 const CreateUser = () => {
     const {setUserData} = React.useContext(AppContext);
+    const [isChecked, setIsChecked] = React.useState(false);
     const history = useHistory();
     const [newUser, setNewUser] = React.useState({
       firstName:"",
@@ -15,7 +16,7 @@ const CreateUser = () => {
       password:"",
       score: 500,
       lenderProfile:{
-        lender:false,
+        lender: null,
         usersId:[],
         totalLoan:0,
         availableLoan:0,
@@ -23,10 +24,15 @@ const CreateUser = () => {
       totalLoaned:0,
       loanLimit:400
     })
-    const handleChange =(ev) =>{
+    const handleChange =(ev) => {
       setNewUser({...newUser,
         [ev.target.name]: ev.target.value})
-    }
+    };
+
+    const handleChecked = (ev) => {
+      setIsChecked(!isChecked);
+    };
+
     const handleSubmit = (ev) => {
         ev.preventDefault();
         console.log(newUser);
@@ -40,10 +46,10 @@ const CreateUser = () => {
             password:newUser.password,
             score:newUser.score,
             lenderProfile:{
-            lender:newUser.lenderProfile.lender,
+            lender: isChecked,
             usersId:newUser.lenderProfile.usersId,
             totalLoan:newUser.lenderProfile.totalLoan,
-            availableLoan:newUser.lenderProfile.availableLoan,
+            availableLoan: isChecked ? 400 : 0,
             },
             totalLoaned:newUser.totalLoaned,
             loanLimit:newUser.loanLimit,
@@ -81,14 +87,15 @@ const CreateUser = () => {
             <LabelSignin>
               Lender?:
               <LenderTypeDiv>
-                <label htmlFor="true">Yes</label>
-                <InputSignin type="radio" name="lender" value="true"  readOnly={true}/>
-              </LenderTypeDiv>
-              <LenderTypeDiv>
-                <label htmlFor="false">No</label>
-                <InputSignin type="radio" name="lender" value="false" readOnly={true}/>
+                <label>Yes</label>
+                <Checkbox type="checkbox" name="yes-lender" checked ={isChecked} onChange={handleChecked}/>
               </LenderTypeDiv>
             </LabelSignin>
+              {isChecked && 
+                <DisclaimerDiv>
+                  Disclaimer: We are not responsible for any loss incurred while using our services.
+                </DisclaimerDiv>
+              }
             <LabelSignin>
               Starting Score:
               <DisabledInput type="number" name="score" value="500" disabled={true}/>
@@ -142,14 +149,25 @@ const InputSignin = styled.input`
     margin: 0;
   }
 `;
+const Checkbox = styled.input`
+  flex:2;
+  cursor: pointer;
+`;
 const DisabledInput = styled(InputSignin)`
   cursor: not-allowed;
 `;
-
 const InputSigninButton = styled.input`
   background:goldenrod;
+  cursor: pointer;
 `;
 const LenderTypeDiv = styled.div`
   display:flex;
+`;
+const DisclaimerDiv = styled.div`
+  max-width: 295px;
+  text-align: justify;
+  border: 3px #d21717 dotted;
+  font-weight: bold;
+  color: #822020;
 `;
 export default CreateUser;
