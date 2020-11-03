@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const SelectedRate = ({availableRate, selectedRate, setSelectedRate}) => {
+const SelectedRate = ({availableRate, setSelectedRate}) => {
   const selectRate = (ev) => {
     ev.preventDefault();
     setSelectedRate(ev.target.value);

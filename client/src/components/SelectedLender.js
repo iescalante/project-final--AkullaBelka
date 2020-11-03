@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const SelectedLender = ({lenderId, availableLoan, totalLoan, selectedLender, setSelectedLender}) => {
+const SelectedLender = ({lenderId, availableLoan, totalLoan, setSelectedLender}) => {
   const selectLender = (ev) => {
     ev.preventDefault();
     setSelectedLender(ev.target.value);
