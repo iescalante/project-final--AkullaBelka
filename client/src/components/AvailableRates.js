@@ -2,27 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import Container from '../reusable-components/Container';
 import SelectedRate from './SelectedRate';
-import { AppContext } from '../AppContext';
 import Spinner from '../Spinner';
 
-const AvailableRates = ({availableRate, setAvailableRate, selectedRate, setSelectedRate, loan, setLoan}) => {
-  const { userData } = React.useContext(AppContext);
-  const [isLoading, setIsLoading] = React.useState(false);
+const AvailableRates = ({ availableRate, loan, setLoan, selectedRate, setSelectedRate, getRate, isLoading}) => {
 
   const changeLoanAmount = (ev) => {
     setLoan(ev.target.value);
-  };
-  
-  const getRate = (ev) => {
-    ev.preventDefault();
-    setIsLoading(true);
-    fetch(`/rates/${userData.currentUser.score}/${loan}`)
-    .then(res => res.json())
-    .then(responseBody => {
-      console.log(responseBody.availableRate)
-      setAvailableRate(responseBody.availableRate);
-      setIsLoading(false);
-    })
   };
 
   return(
