@@ -13,8 +13,22 @@ const GetLoan = () => {
   const [selectedRate, setSelectedRate] = React.useState(null);
   const [availableLenders, setAvailableLenders] = React.useState(null);
   const [selectedLender, setSelectedLender] = React.useState(null);
+  const [isLoading, setIsLoading] = React.useState(false);
   const { userData } = React.useContext(AppContext);
   const history = useHistory();
+
+  const getRate = (ev) => {
+    ev.preventDefault();
+    setIsLoading(true);
+    setAvailableRate(null);
+    setAvailableLenders(null);
+    fetch(`/rates/${userData.currentUser.score}/${loan}`)
+    .then(res => res.json())
+    .then(responseBody => {
+      setAvailableRate(responseBody.availableRate);
+      setIsLoading(false);
+    })
+  };
 
   const submitLoanApplication = (ev) => {
     ev.preventDefault();
@@ -30,7 +44,6 @@ const GetLoan = () => {
   fetch(`/loans/${userData.currentUser._id}/${selectedLender}`, requestOptions)
       .then(response => response.json())
       .then((responseBody) => {
-        console.log("form submitted:",responseBody);
         history.push("/main");
       });
   };
@@ -40,13 +53,14 @@ const GetLoan = () => {
       <Header pageTitle={"Loan Application Page"}/>
       <AvailableRates
         availableRate={availableRate}
-        setAvailableRate={setAvailableRate}
         loan={loan}
         setLoan={setLoan}
         selectedRate={selectedRate}
         setSelectedRate={setSelectedRate}
+        getRate={getRate}
+        isLoading={isLoading}
       />
-      {availableRate && 
+      {availableRate  &&
         <AvailableLenders 
           loan={loan}
           availableLenders={availableLenders}
