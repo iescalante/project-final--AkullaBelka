@@ -23,9 +23,17 @@ module.exports = async (req, res) => {
           ]
         }).toArray();
 
+        const validateLoan = data.reduce((acc, lender) => {
+          let difference = (lender.lenderProfile.availableLoan - lender.lenderProfile.totalLoan);
+          if (difference >= loanAmount) {
+            return [...acc, lender];
+          }
+          return acc;
+        }, []);
+
         res.status(200).json({
             status:200,
-            data
+            data: validateLoan
         });
     } catch(err) {
         console.log(err.stack);
