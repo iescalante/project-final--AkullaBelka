@@ -45,12 +45,15 @@ const GetLoan = () => {
   fetch(`/loans/${userData.currentUser._id}/${selectedLender}`, requestOptions)
       .then(response => response.json())
       .then((responseBody) => {
+        console.log(userData);
+        const newUser = {...userData.currentUser, totalLoaned: Number(loan) + userData.currentUser.totalLoaned}
+        setUserData({
+          ...userData,
+          currentUser: newUser
+        });
+        console.log(userData);
         history.push("/main");
       });
-  setUserData({
-    ...userData,
-    [userData.currentUser.totalLoaned]: loanAmount + userData.currentUser.totalLoaned
-  })
   };
 
   return(
