@@ -48,7 +48,7 @@ const Login = () => {
           Password:
           <InputLogin onChange={changePassword} type="password" name="password" value={password}/>
         </LabelLogin>
-      <InputLoginButton type="submit" value="Log In!"/>
+      <InputLoginButton type="submit">Log In!</InputLoginButton>
         {error !== "" && <ErrorMsg>{error}</ErrorMsg>}
         </LoginForm>
         <SigninDiv>
@@ -78,9 +78,10 @@ const LabelLogin = styled.label`
   display:flex;
   flex:1;
 `;
-const InputLoginButton = styled.input`
+const InputLoginButton = styled.button`
   margin: 10px 0;
   background:goldenrod;
+  cursor: pointer;
 `;
 const SigninDiv = styled.div`
   display: flex;
@@ -88,7 +89,8 @@ const SigninDiv = styled.div`
   margin: 0 auto;
 `;
 const SigninButton = styled.button`
-background:goldenrod;
+  background:goldenrod;
+  cursor: pointer;
 `;
 const ErrorMsg = styled.p`
   color: #560000;
