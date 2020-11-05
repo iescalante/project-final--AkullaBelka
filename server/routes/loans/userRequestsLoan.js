@@ -11,7 +11,7 @@ const options = {
 module.exports = async (req, res) => {
     const client = await MongoClient(MONGO_URI, options);
     const { userId, lenderId } = req.params;
-    const { loanAmount, selectedRate, daysToPay } = req.body;
+    const { loanAmount, selectedRate, daysToPay, paidAmount } = req.body;
     
     try {
         await client.connect();
@@ -29,12 +29,22 @@ module.exports = async (req, res) => {
           dueDate: transactionAndDueDates(daysToPay).dueDate,
           selectedRate,
         });
+        await db.collection("loans").insertOne({
+            userId,
+            transactionDate: transactionAndDueDates(daysToPay).transactionDate,
+            loanAmount,
+            paidAmount,
+            lenderId,
+            dueDate: transactionAndDueDates(daysToPay).dueDate,
+            selectedRate,
+          })
 
         res.status(200).json({
             status:200,
             userId,
             lenderId,
             loanAmount,
+            paidAmount,
             transactionDate: transactionAndDueDates(daysToPay).transactionDate,
             dueDate: transactionAndDueDates(daysToPay).dueDate,
             selectedRate,
