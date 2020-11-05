@@ -27,6 +27,6 @@ module.exports = async (req, res) => {
       ;
     } catch (err) {
       console.log(err.stack);
-      res.status(500).json({status:500, data, message: err.message})
+      res.status(500).json({status:500, transactions, message: err.message})
     }
   };
