@@ -14,7 +14,7 @@ const GetLoan = () => {
   const [availableLenders, setAvailableLenders] = React.useState(null);
   const [selectedLender, setSelectedLender] = React.useState(null);
   const [isLoading, setIsLoading] = React.useState(false);
-  const { userData } = React.useContext(AppContext);
+  const { userData, setUserData } = React.useContext(AppContext);
   const history = useHistory();
 
   const getRate = (ev) => {
@@ -38,7 +38,8 @@ const GetLoan = () => {
       body: JSON.stringify({
         loanAmount: Number(loan),
         selectedRate: Number(selectedRate),
-        daysToPay: Number(availableRate.daysToPayBack)
+        daysToPay: Number(availableRate.daysToPayBack),
+        paidAmount:0
         })
   };
   fetch(`/loans/${userData.currentUser._id}/${selectedLender}`, requestOptions)
@@ -46,6 +47,10 @@ const GetLoan = () => {
       .then((responseBody) => {
         history.push("/main");
       });
+  setUserData({
+    ...userData,
+    [userData.currentUser.totalLoaned]: loanAmount + userData.currentUser.totalLoaned
+  })
   };
 
   return(
