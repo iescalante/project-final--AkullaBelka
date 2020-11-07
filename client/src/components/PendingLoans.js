@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Container from '../reusable-components/Container';
 
-const PendingLoans = () => {
+const PendingLoans = ({selectedLoan, setSelectedLoan}) => {
   return(
     <Container>
       <SingleLoanDiv>
