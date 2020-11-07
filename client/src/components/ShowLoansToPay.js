@@ -1,11 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
+import { AppContext } from '../AppContext';
 
-const ShowLoansToPay = () => {
+const ShowLoansToPay = ({loanData, setLoanData, isLoading, setIsLoading}) => {
+  const { userData } = React.useContext(AppContext);
+
+  const getUserLoans = (ev) => {
+    ev.preventDefault();
+    setIsLoading(true);
+    fetch(`/loans/all/${userData.currentUser._id}`)
+    .then(res => res.json())
+    .then(responseBody => {
+      setLoanData(responseBody.loansToPay);
+      setIsLoading(false);
+    })
+  };
+
   return (
     <StyledContainer>
       Show me my loans to pay today!
-      <ShowLoansButton>Show Loans!</ShowLoansButton>
+      <ShowLoansButton onClick={getUserLoans}>Show Loans!</ShowLoansButton>
     </StyledContainer>
   );
 };
