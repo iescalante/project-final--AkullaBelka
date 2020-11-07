@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { AppContext } from '../AppContext';
 
-const ShowLoansToPay = ({loanData, setLoanData, isLoading, setIsLoading}) => {
+const ShowLoansToPay = ({setLoanData, setIsLoading}) => {
   const { userData } = React.useContext(AppContext);
 
   const getUserLoans = (ev) => {
