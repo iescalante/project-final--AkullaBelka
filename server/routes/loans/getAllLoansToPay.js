@@ -21,8 +21,6 @@ module.exports = async (req, res) => {
             status:200,
             data,
         });
-        // client.close();
-        // console.log("disconnected!");
     } catch(err) {
         console.log(err.stack);
         res.status(500).json({status: 500, data, message: err.message})
