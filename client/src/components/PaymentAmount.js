@@ -2,20 +2,23 @@ import React from 'react';
 import styled from 'styled-components';
 import Container from '../reusable-components/Container';
 
-const PaymentAmount = () => {
+const PaymentAmount = ({payment, setPayment}) => {
+  const handleSelectedPayment = (ev) => {
+    setPayment(ev.target.value);
+  };
+  console.log(payment);
   return (
     <Container>
       <ChoosePaymentAmount>
         <PaymentLabel>
           How much money do you want to pay back? :
-          <PaymentInput type="number" name="payment" />
+          <PaymentInput onChange={handleSelectedPayment} type="number" value={payment}/>
         </PaymentLabel>
-        <PaymentButton type="submit">Click to add payment!</PaymentButton>
       </ChoosePaymentAmount>
     </Container>
   );
 };
-const ChoosePaymentAmount = styled.form`
+const ChoosePaymentAmount = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0 auto;
@@ -38,11 +41,5 @@ const PaymentInput = styled.input`
     -webkit-appearance: none;
     margin: 0;
   }
-`;
-const PaymentButton = styled.button`
-  margin: 10px auto;
-  width: fit-content;
-  background:goldenrod;
-  cursor:pointer;
 `;
 export default PaymentAmount
