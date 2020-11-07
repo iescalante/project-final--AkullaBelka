@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Container from '../reusable-components/Container';
 import Header from '../reusable-components/Header';
+import Spinner from '../Spinner';
 import ShowLoansToPay from './ShowLoansToPay';
 import PendingLoans from './PendingLoans';
 import PaymentAmount from './PaymentAmount';
@@ -47,21 +48,30 @@ const MakeAPayment = () => {
           isLoading={isLoading}
           setIsLoading={setIsLoading}
         />
-        <PendingLoans
-          selectedLoan={selectedLoan}
-          setSelectedLoan={setSelectedLoan}
-        />
-        <PaymentAmount
-          payment={payment}
-          setPayment={setPayment}
-        />
-        <SubmitPaymentForm onSubmit={submitPaymentApplication}>
-          Here is your summary of your selection, please review!
-          <InfoLine>Loan selected to pay: </InfoLine>
-          <InfoLine>Payment Amount: </InfoLine>
-          <InfoLine>Due Date: </InfoLine>
-          <SubmitButton>Click here to submit payment!</SubmitButton>
-        </SubmitPaymentForm>
+        {isLoading ? (<Spinner/>) :(
+          <>
+            {loanData && (
+              <>
+                <PendingLoans
+                  loanData={loanData}
+                  selectedLoan={selectedLoan}
+                  setSelectedLoan={setSelectedLoan}
+                />
+                <PaymentAmount
+                  payment={payment}
+                  setPayment={setPayment}
+                />
+                <SubmitPaymentForm onSubmit={submitPaymentApplication}>
+                  Here is your summary of your selection, please review!
+                  <InfoLine>Loan selected to pay: </InfoLine>
+                  <InfoLine>Payment Amount: </InfoLine>
+                  <InfoLine>Due Date: </InfoLine>
+                  <SubmitButton>Click here to submit payment!</SubmitButton>
+                </SubmitPaymentForm>
+              </>
+            )}
+          </>
+        )}
       </Container>
     )
 };
