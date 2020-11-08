@@ -32,10 +32,10 @@ const Transactions = () => {
       </TransactionsIntro>
       <TransactionsContainer>
         <TransactionsHeadersList>
-          <TransactionsHeader style={{fontWeight: "bold"}}>Transaction Date</TransactionsHeader>
-          <TransactionsHeader style={{fontWeight: "bold"}}>Amount ($)</TransactionsHeader>
-          <TransactionsHeader style={{fontWeight: "bold"}}>Due Date</TransactionsHeader>
-          <TransactionsHeader style={{fontWeight: "bold"}}>Selected Rate</TransactionsHeader>
+          <TransactionsHeader>Transaction Date</TransactionsHeader>
+          <TransactionsHeader>Amount ($)</TransactionsHeader>
+          <TransactionsHeader>Due Date</TransactionsHeader>
+          <TransactionsHeader>Selected Rate</TransactionsHeader>
         </TransactionsHeadersList>
         { isLoading ? (<Spinner/>) : (
           transactions && transactions.map((transaction) => {
@@ -75,5 +75,6 @@ const TransactionsHeadersList = styled.ul`
 const TransactionsHeader = styled.li`
   flex:1;
   margin:10px;
+  font-weight:bold;
 `;
 export default Transactions;
