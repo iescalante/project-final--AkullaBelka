@@ -15,7 +15,7 @@ const MakeAPayment = () => {
   const [selectedLoan, setSelectedLoan] = React.useState(null);
   const [payment, setPayment] = React.useState(null);
   const [isLoading, setIsLoading] = React.useState(false);
-  const { userData, setUserData } = React.useContext(AppContext);
+  const { userData, setUserData, setPaymentConfirmation } = React.useContext(AppContext);
   const history = useHistory();
 
   const submitPaymentApplication = (ev) => {
@@ -34,14 +34,13 @@ const MakeAPayment = () => {
       .then((responseBody) => {
         if (responseBody.status === 200) {
           setError(null);
-          console.log(userData);
           const newUser = {...userData.currentUser, totalLoaned: userData.currentUser.totalLoaned - Number(payment)}
           setUserData({
             ...userData,
             currentUser: newUser
           });
-          console.log(userData);
-          history.push("/main");
+          setPaymentConfirmation(responseBody);
+          history.push("/main/make-payment/confirmation");
         } else {
           setError(responseBody.message);
           return;
@@ -74,9 +73,9 @@ const MakeAPayment = () => {
                 {selectedLoan && payment && (
                   <>
                     <SubmitPaymentForm onSubmit={submitPaymentApplication}>
-                      Here is your summary of your selection, please review!
-                      <InfoLine>Loan selected to pay: {selectedLoan.loanAmount}</InfoLine>
-                      <InfoLine>Payment Amount: {payment}</InfoLine>
+                      <InfoHeader>Here is your summary of your selection, please review!</InfoHeader>
+                      <InfoLine>Loan selected to pay: {selectedLoan.loanAmount}$</InfoLine>
+                      <InfoLine>Payment: {payment}$</InfoLine>
                       <InfoLine>Due Date: {selectedLoan.dueDate}</InfoLine>
                       <SubmitButton>Click here to submit payment!</SubmitButton>
                     </SubmitPaymentForm>
@@ -92,10 +91,14 @@ const MakeAPayment = () => {
 const SubmitPaymentForm = styled.form`
   display:flex;
   flex-direction:column;
-  text-align: center;
+  margin: 0 auto;
+`;
+const InfoHeader = styled.h2`
+  font-size: 1.2em;
 `;
 const InfoLine = styled.p`
   font-weight: bold;
+  text-align: left;
 `;
 const SubmitButton = styled.button`
   margin: 10px auto;

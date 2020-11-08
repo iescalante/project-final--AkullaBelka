@@ -14,7 +14,7 @@ const GetLoan = () => {
   const [availableLenders, setAvailableLenders] = React.useState(null);
   const [selectedLender, setSelectedLender] = React.useState(null);
   const [isLoading, setIsLoading] = React.useState(false);
-  const { userData, setUserData } = React.useContext(AppContext);
+  const { userData, setUserData, setLoanConfirmation } = React.useContext(AppContext);
   const history = useHistory();
 
   const getRate = (ev) => {
@@ -51,8 +51,8 @@ const GetLoan = () => {
           ...userData,
           currentUser: newUser
         });
-        console.log(userData);
-        history.push("/main");
+        setLoanConfirmation(responseBody);
+        history.push("/main/get-loan/confirmation");
       });
   };
 
@@ -79,10 +79,10 @@ const GetLoan = () => {
       }
       {selectedRate && selectedLender &&
         <SubmitLoan onSubmit={submitLoanApplication}>
-          Here is your summary of your selection, please review!
-          <InfoLine>Asking Loan: {loan}</InfoLine>
-          <InfoLine>Rate Selected :{selectedRate}</InfoLine>
-          <InfoLine>Lender Selection: {selectedLender}</InfoLine>
+          <InfoHeader>Here is your summary of your selection, please review!</InfoHeader>
+          <InfoLine>Loan: {loan}$</InfoLine>
+          <InfoLine>Rate Selected: {selectedRate*100}%</InfoLine>
+          <InfoLine>Selected Lender's ID: {selectedLender}</InfoLine>
           <SubmitButton type='submit'>Click here to submit everything</SubmitButton>
         </SubmitLoan>
       }
@@ -92,10 +92,14 @@ const GetLoan = () => {
 const SubmitLoan = styled.form`
   display:flex;
   flex-direction:column;
-  text-align: center;
+  margin: 0 auto;
+`;
+const InfoHeader = styled.h2`
+  font-size: 1.2em;
 `;
 const InfoLine = styled.p`
   font-weight: bold;
+  text-align: left;
 `;
 const SubmitButton = styled.button`
   margin: 10px auto;
