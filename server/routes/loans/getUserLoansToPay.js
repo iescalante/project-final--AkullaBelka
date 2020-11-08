@@ -17,9 +17,17 @@ module.exports = async (req, res) => {
       console.log("connected!");
   
       const loansToPay = await db.collection("loans").find({userId}).hint( { $natural : -1 } ).toArray();
+      const validLoansToPay = loansToPay.filter((loan) => {
+        if (loan.paidAmount >= loan.loanAmount) {
+          return;
+        } else {
+          return loan;
+        }
+      });
+
       res.status(200).json({
         status:200,
-        loansToPay,
+        validLoansToPay,
     });
         client.close();
         console.log("disconnected!");

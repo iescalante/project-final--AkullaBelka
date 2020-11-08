@@ -11,7 +11,7 @@ const ShowLoansToPay = ({setLoanData, setIsLoading}) => {
     fetch(`/loans/all/${userData.currentUser._id}`)
     .then(res => res.json())
     .then(responseBody => {
-      setLoanData(responseBody.loansToPay);
+      setLoanData(responseBody.validLoansToPay);
       setIsLoading(false);
     })
   };
