@@ -19,9 +19,9 @@ const LoanItem = ({loanId,transactionDate,dueDate,loanAmount,selectedRate,paidAm
       <LoanInfoList>
         <LoanInfo>Transaction Date: {transactionDate}</LoanInfo>
         <LoanInfo>Due Date: {dueDate}</LoanInfo>
-        <LoanInfo>Loan Amount: {loanAmount}</LoanInfo>
-        <LoanInfo>Selected rate for loan: {selectedRate}</LoanInfo>
-        <LoanInfo>Paid amount to date: {paidAmount}</LoanInfo>
+        <LoanInfo>Loan Amount: {loanAmount}$</LoanInfo>
+        <LoanInfo>Selected rate for loan: {selectedRate*100}%</LoanInfo>
+        <LoanInfo>Paid amount to date: {paidAmount}$</LoanInfo>
       </LoanInfoList>
       <SelectLoanButton onClick={handleSelectedLoan}>Select this loan to pay</SelectLoanButton>
     </SingleLoanDiv>

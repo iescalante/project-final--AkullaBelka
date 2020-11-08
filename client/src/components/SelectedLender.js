@@ -9,8 +9,8 @@ const SelectedLender = ({lenderId, availableLoan, totalLoan, setSelectedLender})
   
   return (
     <SingleLenderForm>
-      <InfoLine>Lender's Id: {lenderId}</InfoLine>
-      <InfoLine>How much can be lent: {availableLoan - totalLoan}</InfoLine>
+      <InfoLine>Lender's ID: {lenderId}</InfoLine>
+      <InfoLine>How much can be lent: {availableLoan - totalLoan}$</InfoLine>
       <SelectLenderButton onClick={selectLender} type="submit" value={lenderId}>Select This Lender</SelectLenderButton>
     </SingleLenderForm>
   )

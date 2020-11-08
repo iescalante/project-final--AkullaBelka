@@ -35,6 +35,7 @@ const ProfileDiv = styled.div`
   flex-direction: column;
   color: black;
   margin-top: 30px;
+  margin-left: 66px;
 `;
 const UserInfo = styled.h2`
   font-weight: bold;

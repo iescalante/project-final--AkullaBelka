@@ -28,6 +28,7 @@ const StyledContainer = styled.div`
   flex-direction: column;
   margin-top: 50px;
   text-align: center;
+  font-weight:bold;
 `;
 const ShowLoansButton = styled.button`
   margin: 10px auto;

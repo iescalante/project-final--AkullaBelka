@@ -74,7 +74,8 @@ const Homepage = () => {
 const IntroHeader = styled.h2`
   font-size:1.25em;
   color: black;
-  margin:12px 0;
+  margin-top:12px;
+  margin-left: 66px;
 `;
 const MainLinkContainer = styled.div`
   margin: 0 auto;

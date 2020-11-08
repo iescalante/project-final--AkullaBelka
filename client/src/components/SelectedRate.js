@@ -9,7 +9,7 @@ const SelectedRate = ({availableRate, setSelectedRate}) => {
   
   return (
     <SingleRateForm>
-      <InfoLine>Rate: {availableRate.rate}</InfoLine>
+      <InfoLine>Rate: {availableRate.rate*100}%</InfoLine>
       <InfoLine>Grace Period (Days): {availableRate.daysToPayBack}</InfoLine>
       <SelectRateButton onClick={selectRate} type="submit" value={availableRate.rate}>Select This Rate</SelectRateButton>
     </SingleRateForm>
