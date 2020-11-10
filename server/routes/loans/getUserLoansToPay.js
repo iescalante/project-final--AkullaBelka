@@ -15,7 +15,8 @@ module.exports = async (req, res) => {
   
       const db = client.db("akulla_belka");
       console.log("connected!");
-  
+
+      await db.collection("loans").update({userId}, {$set: {lastTimeChecked: new Date()}}, {multi: true});
       const loansToPay = await db.collection("loans").find({userId}).hint( { $natural : -1 } ).toArray();
       const validLoansToPay = loansToPay.filter((loan) => {
         if (loan.paidAmount >= loan.loanAmount) {
