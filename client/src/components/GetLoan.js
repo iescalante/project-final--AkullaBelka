@@ -39,7 +39,8 @@ const GetLoan = () => {
         loanAmount: Number(loan),
         selectedRate: Number(selectedRate),
         daysToPay: Number(availableRate.daysToPayBack),
-        paidAmount:0
+        paidAmount:0,
+        lastTimeChecked: new Date().toUTCString(),
         })
   };
   fetch(`/loans/${userData.currentUser._id}/${selectedLender}`, requestOptions)

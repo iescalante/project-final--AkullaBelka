@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Container from '../reusable-components/Container';
 import LoanItem from './LoanItem';
 
-const PendingLoans = ({selectedLoan, setSelectedLoan, loanData}) => {
+const PendingLoans = ({setSelectedLoan, loanData}) => {
   return(
     <Container>
       {loanData.map((loan)=> {
@@ -16,6 +16,7 @@ const PendingLoans = ({selectedLoan, setSelectedLoan, loanData}) => {
             selectedRate={loan.selectedRate}
             paidAmount={loan.paidAmount}
             lenderId={loan.lenderId}
+            lastTimeChecked={loan.lastTimeChecked}
             setSelectedLoan={setSelectedLoan}
           />)
       })}
