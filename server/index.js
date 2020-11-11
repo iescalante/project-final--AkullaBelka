@@ -4,9 +4,10 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const routes = require("./routes");
 require("dotenv").config();
+const { cronInit } = require('./cronHandler');
 
 const PORT = 4000;
-
+// cronInit();
 express()
   .use(function (req,res,next) {
     res.header(
