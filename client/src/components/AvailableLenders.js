@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Container from '../reusable-components/Container';
 import SelectedLender from './SelectedLender';
 import Spinner from '../Spinner';
-import { AppContex } from '../AppContext';
+import { AppContext } from '../AppContext';
 
 const AvailableLenders = ({ loan, availableLenders, setAvailableLenders, selectedLender, setSelectedLender }) => {
   const [isLoading, setIsLoading] = React.useState(false);
