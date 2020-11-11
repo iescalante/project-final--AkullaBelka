@@ -9,7 +9,7 @@ const options = {
 
 module.exports = async (req, res) => {
     const client = await MongoClient(MONGO_URI, options);
-    const { loanAmount } = req.params;
+    const { loanAmount, userId } = req.params;
     console.log(loanAmount);
     try {
         await client.connect();
@@ -25,7 +25,7 @@ module.exports = async (req, res) => {
 
         const validateLoan = data.reduce((acc, lender) => {
           let difference = (lender.lenderProfile.availableLoan - lender.lenderProfile.totalLoan);
-          if (difference >= loanAmount && difference >= 100) {
+          if (String(userId) !== String(lender._id) && difference >= loanAmount && difference >= 100) {
             return [...acc, lender];
           }
           return acc;

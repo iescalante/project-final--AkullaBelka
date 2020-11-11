@@ -3,17 +3,19 @@ import styled from 'styled-components';
 import Container from '../reusable-components/Container';
 import SelectedLender from './SelectedLender';
 import Spinner from '../Spinner';
+import { AppContex } from '../AppContext';
 
 const AvailableLenders = ({ loan, availableLenders, setAvailableLenders, selectedLender, setSelectedLender }) => {
   const [isLoading, setIsLoading] = React.useState(false);
   const [noLenders, setNoLenders] = React.useState(false);
+  const { userData } = React.useContext(AppContext);
 
   const getLenders = (ev) => {
     ev.preventDefault();
     setIsLoading(true);
     setNoLenders(false);
 
-    fetch(`/loans/${loan}`)
+    fetch(`/loans/${userData.currentUser._id}/${loan}`)
     .then(res => res.json())
     .then(responseBody => {
       if (responseBody.data.length === 0) {

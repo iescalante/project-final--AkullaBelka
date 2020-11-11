@@ -8,7 +8,7 @@ const userSendsPayment = require("./userSendsPayment");
 loans.get("/all", getAllLoansToPay);
 loans.get("/all/:userId", getUserLoansToPay);
 loans.put("/all/:userId/:lenderId", userSendsPayment);
-loans.get("/:loanAmount", getAvailableLoans);
+loans.get("/:userId/:loanAmount", getAvailableLoans);
 loans.put("/:userId/:lenderId", userRequestsLoan);
 
 module.exports = loans;
