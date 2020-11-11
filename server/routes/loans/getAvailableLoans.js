@@ -25,7 +25,7 @@ module.exports = async (req, res) => {
 
         const validateLoan = data.reduce((acc, lender) => {
           let difference = (lender.lenderProfile.availableLoan - lender.lenderProfile.totalLoan);
-          if (difference >= loanAmount) {
+          if (difference >= loanAmount && difference >= 100) {
             return [...acc, lender];
           }
           return acc;
