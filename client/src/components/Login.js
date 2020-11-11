@@ -93,6 +93,7 @@ const SigninButton = styled.button`
   cursor: pointer;
 `;
 const ErrorMsg = styled.p`
+  padding: 10px;
   color: #560000;
   font-weight: bold;
   width: 250px;

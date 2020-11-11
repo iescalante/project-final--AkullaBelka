@@ -107,7 +107,8 @@ const SubmitButton = styled.button`
   cursor: pointer;
 `;
 const Error = styled.p`
-  margin: 20px auto;
+  margin: 15px auto;
+  padding: 10px;
   max-width: 295px;
   text-align: justify;
   border: 3px #d21717 dotted;

@@ -165,6 +165,7 @@ const LenderTypeDiv = styled.div`
 `;
 const DisclaimerDiv = styled.div`
   max-width: 295px;
+  padding: 10px;
   text-align: justify;
   border: 3px #d21717 dotted;
   font-weight: bold;
