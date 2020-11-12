@@ -1,12 +1,12 @@
 const transactionAndDueDates = (days, payDay) => {
   let dueTime = 1000*60*60*24*days;
   let startDate = new Date();
-  let endDate = new Date(startDate.getTime() + dueTime).toUTCString();
+  let endDate = new Date(startDate.getTime() + dueTime);
   let currentDate = Date.parse(new Date());
   let daysPassed = (Date.parse(payDay)- currentDate)/(1000*60*60*24);
   
   return { 
-    transactionDate: startDate.toUTCString(),
+    transactionDate: startDate,
     dueDate: endDate,
     currentDate,
     daysPassed
