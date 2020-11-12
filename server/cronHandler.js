@@ -16,14 +16,13 @@ const cronInit = async(req,res) => {
     await client.connect();
     const db = client.db("akulla_belka");
     console.log("connected!");
-
     
-    const job = new CronJob('0-59/10 * * * * *', async function() {
+    const job = new CronJob('0-59/10 * * * * *', function() {
       const d = new Date();
-      const data = await db.collection("loans").find({dueDate: {$lt: new Date()}}).toArray();
-      if (data) {
-      console.log(data);
-      }
+      // const data = await db.collection("loans").find({dueDate: {$lt: new Date()}}).toArray();
+      // if (data) {
+      // console.log(data);
+      // }
       console.log({tenSecond: d})
     });
     console.log('After job instantiation');
@@ -33,8 +32,8 @@ const cronInit = async(req,res) => {
     console.log(err.stack);
   }
 
-  // client.close();
-  // console.log("disconnected!");
+  client.close();
+  console.log("disconnected!");
 };
 
 module.exports = {cronInit};
