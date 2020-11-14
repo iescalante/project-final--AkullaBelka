@@ -7,7 +7,7 @@ require("dotenv").config();
 const { cronInit } = require('./cronHandler');
 
 const PORT = 4000;
-cronInit();
+// cronInit();
 express()
   .use(function (req,res,next) {
     res.header(

@@ -1,5 +1,5 @@
 const CronJob = require('cron').CronJob;
-const { MongoClient } = require("mongodb");
+const { MongoClient, ObjectID } = require("mongodb");
 require("dotenv").config();
 const { MONGO_URI } = process.env;
 
@@ -19,14 +19,22 @@ const cronInit = async(req,res) => {
     
     const job = new CronJob('0-59/10 * * * * *', async function(req,res) {
       const d = new Date();
-      const data = await db.collection("loans").update(
-        {dueDate: {$lt: new Date()}},
-        {$inc: {loanAmount: loanAmount*selectedRate}},
-        {multi: true}
-      );
-
-      if (data) {
-      console.log("data updated");
+      const loansPastDue = await db.collection("loans").find({dueDate: {$lt: new Date()}}).toArray();
+      const realLoansPastDue = loansPastDue.filter((loan) => {
+        return loan.loanAmount > loan.paidAmount;
+      });
+  
+      if (realLoansPastDue) {
+        console.log(realLoansPastDue);
+        const updatedLoans = realLoansPastDue.forEach(async (loan) => {
+          const realLoanToPay = loan.loanAmount - loan.paidAmount;
+          console.log(realLoanToPay);
+          if (!realLoanToPay) {
+            return;
+          } else {
+            return await db.collection("loans").findOneAndUpdate({_id:ObjectID(loan._id)},{$inc:{loanAmount: Math.round(realLoanToPay*loan.selectedRate)}})
+          }
+        });
       }
       console.log({tenSecond: d})
     });
