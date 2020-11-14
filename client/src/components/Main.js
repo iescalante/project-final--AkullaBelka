@@ -45,7 +45,7 @@ const Homepage = () => {
             <StyledLinkContainer>
               <StyledLink onMouseEnter={enterProfile} onMouseLeave={leaveProfile} to="/main/profile">Profile</StyledLink>
               <LinkInformation style={{visibility: profileVisible ? "visible" : "hidden"}}>
-                View personal information on user, personal score, loans, etc.
+                View personal information on user, personal score, loans, etc
               </LinkInformation>
             </StyledLinkContainer>
             <StyledLinkContainer>
@@ -63,7 +63,7 @@ const Homepage = () => {
             <StyledLinkContainer>
               <StyledLink onMouseEnter={enterTransaction} onMouseLeave={leaveTransaction} to="/main/transactions">Transactions</StyledLink>
               <LinkInformation style={{visibility: transactionVisible ? "visible" : "hidden"}}>
-                View all transactions with details on start and due date, loan amounts, at what rate etc.
+                View all transactions with details on start and due date, loan amounts, payments, etc
               </LinkInformation>
             </StyledLinkContainer>
           </StyledLinkList>

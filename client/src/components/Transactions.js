@@ -27,14 +27,14 @@ const Transactions = () => {
     <Container>
       <Header pageTitle={"Transactions Page"}/>
       <TransactionsIntro>
-        This is where you can view all your transactions!
+        This is where you can view all your transactions! (+: Loan; -: Payment)
         <ShowTransactionsButton onClick={showTransactions}>Show All Transactions</ShowTransactionsButton>
       </TransactionsIntro>
       <TransactionsContainer>
         <TransactionsHeadersList>
-          <TransactionsHeader>Transaction Date</TransactionsHeader>
+          <TransactionsHeader>Transaction Date (UTC)</TransactionsHeader>
           <TransactionsHeader>Amount ($)</TransactionsHeader>
-          <TransactionsHeader>Due Date</TransactionsHeader>
+          <TransactionsHeader>Due Date (UTC)</TransactionsHeader>
           <TransactionsHeader>Selected Rate</TransactionsHeader>
         </TransactionsHeadersList>
         { isLoading ? (<Spinner/>) : (

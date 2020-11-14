@@ -10,17 +10,25 @@ const Error = () => {
   }
   return (
     <>
-      <h1>Hey....sorry there's an error somewhere</h1>
-      <LogoImage src={Logo} onClick={handleGoLogin} />
-      <h2>Click on Logo to go back to the login</h2>
+      <ErrContainer>
+        <h1>Hey....sorry there's an error somewhere</h1>
+        <LogoImage src={Logo} onClick={handleGoLogin} />
+        <h2>Click on Logo to go back to the login</h2>
+      </ErrContainer>
     </>
     )
 };
+const ErrContainer = styled.div`
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
+`;
 const LogoImage = styled.img`
   border-radius: 50%;
   background-color: lightgrey;
-  width: 50px;
-  margin-right: 15px;
+  width: 300px;
+  margin: 20px 0;
   cursor: pointer;
 `;
 export default Error;

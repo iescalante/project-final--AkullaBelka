@@ -65,7 +65,7 @@ const CreateUser = () => {
 
     return (
         <StyledContainer>
-          <TopHeader>We're going to need a little information about you!</TopHeader>
+          <TopHeader>Let's start with some information about yourself!</TopHeader>
           <LogoImage src={Logo} alt="akullabelka logo"/>
           <SigninForm onSubmit={handleSubmit}>
             <LabelSignin>

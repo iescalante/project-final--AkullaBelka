@@ -8,7 +8,6 @@ const transactionAndDueDates = (days, payDay) => {
   return { 
     transactionDate: startDate,
     dueDate: endDate,
-    currentDate,
     daysPassed
   };
 }

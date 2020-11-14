@@ -39,8 +39,7 @@ const GetLoan = () => {
         loanAmount: Number(loan),
         selectedRate: Number(selectedRate),
         daysToPay: Number(availableRate.daysToPayBack),
-        paidAmount:0,
-        lastTimeChecked: new Date().toUTCString(),
+        paidAmount:0
         })
   };
   fetch(`/loans/${userData.currentUser._id}/${selectedLender}`, requestOptions)
@@ -80,7 +79,7 @@ const GetLoan = () => {
       }
       {selectedRate && selectedLender &&
         <SubmitLoan onSubmit={submitLoanApplication}>
-          <InfoHeader>Here is your summary of your selection, please review!</InfoHeader>
+          <InfoHeader>Here is a summary of your selections, please review!</InfoHeader>
           <InfoLine>Loan: {loan}$</InfoLine>
           <InfoLine>Rate Selected: {selectedRate*100}%</InfoLine>
           <InfoLine>Selected Lender's ID: {selectedLender}</InfoLine>

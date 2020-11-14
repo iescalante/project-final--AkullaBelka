@@ -11,12 +11,8 @@ const Signout = () => {
     },3000);
   return (
     <Container>
-      <Message>
-        Thank you for using AkullaBelka!
-      </Message>
-      <Message>
-        See you soon!
-      </Message>
+      <Message>Thank you for using AkullaBelka!</Message>
+      <Message>See you soon!</Message>
       <Spinner/>
     </Container>
     )
