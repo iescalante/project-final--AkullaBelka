@@ -25,7 +25,7 @@ const PaymentConfirmation = () => {
           Please find your transaction information for your payment:
         </InformativeLine>
         <ConfirmationList>
-          <ConfirmationItem>Transaction Date: {paymentConfirmation.transactionDate}</ConfirmationItem>
+          <ConfirmationItem>Transaction Date: {new Date(paymentConfirmation.transactionDate).toUTCString()}</ConfirmationItem>
           <ConfirmationItem>Payment: {paymentConfirmation.paidAmount}$</ConfirmationItem>
         </ConfirmationList>
         <PrintButton onClick={handlePrint}>Print Confirmation</PrintButton>

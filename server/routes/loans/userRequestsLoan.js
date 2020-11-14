@@ -37,7 +37,7 @@ module.exports = async (req, res) => {
             lenderId,
             dueDate: transactionAndDueDates(daysToPay).dueDate,
             selectedRate,
-            lastTimeChecked
+            lastTimeChecked: new Date()
           })
 
         res.status(200).json({

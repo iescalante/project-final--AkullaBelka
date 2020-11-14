@@ -25,8 +25,8 @@ const LoanConfirmation = () => {
           Please find your transaction information for your loan:
         </InformativeLine>
         <ConfirmationList>
-          <ConfirmationItem>Transaction Date: {loanConfirmation.transactionDate}</ConfirmationItem>
-          <ConfirmationItem>Due Date: {loanConfirmation.dueDate}</ConfirmationItem>
+          <ConfirmationItem>Transaction Date: {new Date(loanConfirmation.transactionDate).toUTCString()}</ConfirmationItem>
+          <ConfirmationItem>Due Date: {new Date(loanConfirmation.dueDate).toUTCString()}</ConfirmationItem>
           <ConfirmationItem>Loan Amount: {loanConfirmation.loanAmount}$</ConfirmationItem>
           <ConfirmationItem>Selected Rate: {loanConfirmation.selectedRate *100}%</ConfirmationItem>
         </ConfirmationList>

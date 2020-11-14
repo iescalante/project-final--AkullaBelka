@@ -17,12 +17,17 @@ const cronInit = async(req,res) => {
     const db = client.db("akulla_belka");
     console.log("connected!");
     
-    const job = new CronJob('0-59/10 * * * * *', function() {
+    const job = new CronJob('0-59/10 * * * * *', async function(req,res) {
       const d = new Date();
-      // const data = await db.collection("loans").find({dueDate: {$lt: new Date()}}).toArray();
-      // if (data) {
-      // console.log(data);
-      // }
+      const data = await db.collection("loans").update(
+        {dueDate: {$lt: new Date()}},
+        {$inc: {loanAmount: loanAmount*selectedRate}},
+        {multi: true}
+      );
+
+      if (data) {
+      console.log("data updated");
+      }
       console.log({tenSecond: d})
     });
     console.log('After job instantiation');
@@ -32,8 +37,8 @@ const cronInit = async(req,res) => {
     console.log(err.stack);
   }
 
-  client.close();
-  console.log("disconnected!");
+  // client.close();
+  // console.log("disconnected!");
 };
 
 module.exports = {cronInit};

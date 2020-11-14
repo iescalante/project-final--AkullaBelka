@@ -12,6 +12,7 @@ module.exports = async (req, res) => {
     const client = await MongoClient(MONGO_URI, options);
     const { userId, lenderId } = req.params;
     const { paidAmount, loanId } = req.body;
+    const currentDay = 0;
     console.log(paidAmount, loanId);
     try {
         await client.connect();
@@ -34,7 +35,7 @@ module.exports = async (req, res) => {
             await db.collection("loans").findOneAndUpdate({ _id: ObjectID(loanId) },{$inc: {paidAmount: Number(paidAmount)}});
             await db.collection("transactions").insertOne({
               userId,
-              transactionDate: transactionAndDueDates(0).transactionDate,
+              transactionDate: transactionAndDueDates(currentDay).transactionDate,
               paidAmount,
               lenderId,
             });
@@ -45,7 +46,7 @@ module.exports = async (req, res) => {
               lenderId,
               loanId,
               paidAmount,
-              transactionDate: transactionAndDueDates(0).transactionDate,
+              transactionDate: transactionAndDueDates(currentDay).transactionDate
             });
         }
     } catch(err) {

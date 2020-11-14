@@ -4,12 +4,12 @@ import styled from 'styled-components';
 const Transaction = ({transaction}) => {
   return (
     <TransactionList>
-      <TransactionHeader>{transaction.transactionDate}</TransactionHeader>
+      <TransactionHeader>{new Date(transaction.transactionDate).toUTCString()}</TransactionHeader>
       {transaction.loanAmount  
         ?<TransactionHeader>+{transaction.loanAmount}</TransactionHeader>
         :<TransactionHeader>-{transaction.paidAmount}</TransactionHeader>  
       }
-      <TransactionHeader>{transaction.dueDate || "N/Ap"}</TransactionHeader>
+      <TransactionHeader>{new Date(transaction.dueDate).toUTCString() || "N/Ap"}</TransactionHeader>
       {transaction.selectedRate
         ?<TransactionHeader>{(transaction.selectedRate)*100}%</TransactionHeader>
         :<TransactionHeader>N/Ap</TransactionHeader>

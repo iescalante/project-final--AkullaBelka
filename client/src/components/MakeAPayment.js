@@ -76,7 +76,7 @@ const MakeAPayment = () => {
                       <InfoHeader>Here is your summary of your selection, please review!</InfoHeader>
                       <InfoLine>Loan selected to pay: {selectedLoan.loanAmount}$</InfoLine>
                       <InfoLine>Payment: {payment}$</InfoLine>
-                      <InfoLine>Due Date: {selectedLoan.dueDate}</InfoLine>
+                      <InfoLine>Due Date: {new Date(selectedLoan.dueDate).toUTCString()}</InfoLine>
                       <SubmitButton>Click here to submit payment!</SubmitButton>
                     </SubmitPaymentForm>
                   </>
