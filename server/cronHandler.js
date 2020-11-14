@@ -26,13 +26,11 @@ const cronInit = async(req,res) => {
   
       if (realLoansPastDue) {
         console.log(realLoansPastDue);
-        const updatedLoans = realLoansPastDue.forEach(async (loan) => {
+        realLoansPastDue.forEach(async (loan) => {
           const realLoanToPay = loan.loanAmount - loan.paidAmount;
           console.log(realLoanToPay);
-          if (!realLoanToPay) {
-            return;
-          } else {
-            return await db.collection("loans").findOneAndUpdate({_id:ObjectID(loan._id)},{$inc:{loanAmount: Math.round(realLoanToPay*loan.selectedRate)}})
+          if (realLoanToPay > 0) {
+            await db.collection("loans").findOneAndUpdate({_id:ObjectID(loan._id)},{$inc:{loanAmount: Math.round(realLoanToPay*loan.selectedRate)}})
           }
         });
       }
