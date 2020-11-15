@@ -30,7 +30,8 @@ const cronInit = async(req,res) => {
           const realLoanToPay = loan.loanAmount - loan.paidAmount;
           console.log(realLoanToPay);
           if (realLoanToPay > 0) {
-            await db.collection("loans").findOneAndUpdate({_id:ObjectID(loan._id)},{$inc:{loanAmount: Math.round(realLoanToPay*loan.selectedRate)}})
+            await db.collection("loans").findOneAndUpdate({_id:ObjectID(loan._id)},{$inc:{loanAmount: Math.round(realLoanToPay*loan.selectedRate)}});
+            await db.collection("users").findOneAndUpdate({_id:ObjectID(loan.userId)},{$inc:{score: -20}});
           }
         });
       }
