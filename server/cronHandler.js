@@ -9,7 +9,7 @@ const options = {
 };
 
 console.log('Before job instantiation');
-const cronInit = async(req,res) => {
+const latePaymentScheduler = async(req,res) => {
   const client = await MongoClient(MONGO_URI, options);
 
   try {
@@ -32,6 +32,12 @@ const cronInit = async(req,res) => {
           if (realLoanToPay > 0) {
             await db.collection("loans").findOneAndUpdate({_id:ObjectID(loan._id)},{$inc:{loanAmount: Math.round(realLoanToPay*loan.selectedRate)}});
             await db.collection("users").findOneAndUpdate({_id:ObjectID(loan.userId)},{$inc:{score: -20}});
+            await db.collection("transactions").insertOne({
+              userId: loan.userId,
+              transactionDate: new Date(),
+              interest: Math.round(realLoanToPay*loan.selectedRate),
+              lenderId: loan.lenderId,
+            });
           }
         });
       }
@@ -48,4 +54,4 @@ const cronInit = async(req,res) => {
   // console.log("disconnected!");
 };
 
-module.exports = {cronInit};
+module.exports = {latePaymentScheduler};
