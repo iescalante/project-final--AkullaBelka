@@ -29,7 +29,7 @@ module.exports = async (req, res) => {
             message: "Sorry, you can't pay more than what you owe!"
           })
         } else {
-            await db.collection("users").findOneAndUpdate({ _id: ObjectID(userId) },{$inc: {totalLoaned: -Number(paidAmount)}});
+            await db.collection("users").findOneAndUpdate({ _id: ObjectID(userId) },{$inc: {totalLoaned: -Number(paidAmount), score: 1}});
             await db.collection("users").findOneAndUpdate({_id: ObjectID(lenderId)}, {$inc:{"lenderProfile.totalLoan": -Number(paidAmount)}});
             await db.collection("users").findOneAndUpdate({_id: ObjectID(lenderId)}, {$push:{"lenderProfile.usersId": {userId, paidAmount: Number(paidAmount)}}});
             await db.collection("loans").findOneAndUpdate({ _id: ObjectID(loanId) },{$inc: {paidAmount: Number(paidAmount)}});

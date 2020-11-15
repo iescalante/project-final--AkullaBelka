@@ -34,7 +34,11 @@ const MakeAPayment = () => {
       .then((responseBody) => {
         if (responseBody.status === 200) {
           setError(null);
-          const newUser = {...userData.currentUser, totalLoaned: userData.currentUser.totalLoaned - Number(payment)}
+          const newUser = {
+            ...userData.currentUser, 
+            totalLoaned: userData.currentUser.totalLoaned - Number(payment),
+            score: userData.currentUser.score + 1,
+          };
           setUserData({
             ...userData,
             currentUser: newUser
