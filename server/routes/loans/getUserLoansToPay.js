@@ -16,14 +16,10 @@ module.exports = async (req, res) => {
       const db = client.db("akulla_belka");
       console.log("connected!");
 
-      await db.collection("loans").update({userId}, {$set: {lastTimeChecked: new Date()}}, {multi: true});
+      await db.collection("loans").updateMany({userId}, {$set: {lastTimeChecked: new Date()}});
       const loansToPay = await db.collection("loans").find({userId}).hint( { $natural : -1 } ).toArray();
       const validLoansToPay = loansToPay.filter((loan) => {
-        if (loan.paidAmount >= loan.loanAmount) {
-          return;
-        } else {
-          return loan;
-        }
+        return loan.balance > 0;
       });
 
       res.status(200).json({

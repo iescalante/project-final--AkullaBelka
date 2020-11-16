@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const LoanItem = ({loanId,transactionDate,dueDate,loanAmount,selectedRate,paidAmount,lenderId,lastTimeChecked,setSelectedLoan}) => {
+const LoanItem = ({loanId,transactionDate,dueDate,loanAmount,selectedRate,balance,lenderId,lastTimeChecked,setSelectedLoan}) => {
   const handleSelectedLoan = (ev) => {
     ev.preventDefault();
     setSelectedLoan({
@@ -26,9 +26,9 @@ const LoanItem = ({loanId,transactionDate,dueDate,loanAmount,selectedRate,paidAm
         <LoanInfo>Transaction Date: {new Date(transactionDate).toUTCString()}</LoanInfo>
         <LoanInfo>Due Date: {new Date(dueDate).toUTCString()}</LoanInfo>
         <LoanInfo>Days before due date: {daysPassed(dueDate,lastTimeChecked).toFixed(5)}</LoanInfo>
-        <LoanInfo>Loan Amount: {loanAmount}$</LoanInfo>
         <LoanInfo>Selected rate for loan: {selectedRate*100}%</LoanInfo>
-        <LoanInfo>Paid amount to date: {paidAmount}$</LoanInfo>
+        <LoanInfo>Initial Loan: {loanAmount}$</LoanInfo>
+        <LoanInfo>Loan Balance: {balance}$</LoanInfo>
       </LoanInfoList>
       <SelectLoanButton onClick={handleSelectedLoan}>Select this loan to pay</SelectLoanButton>
     </SingleLoanDiv>

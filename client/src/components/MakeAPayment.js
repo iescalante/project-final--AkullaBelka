@@ -26,7 +26,8 @@ const MakeAPayment = () => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         paidAmount: Number(payment),
-        loanId: selectedLoan.loanId
+        loanId: selectedLoan.loanId,
+        balance: selectedLoan.balance,
         })
   };
   fetch(`/loans/all/${userData.currentUser._id}/${selectedLoan.lenderId}`, requestOptions)
@@ -51,6 +52,7 @@ const MakeAPayment = () => {
         }
       });
   };
+  console.log(loanData);
     return (
       <Container>
         <Header pageTitle={"Make a Payment"}/>
@@ -69,16 +71,20 @@ const MakeAPayment = () => {
                   selectedLoan={selectedLoan}
                   setSelectedLoan={setSelectedLoan}
                 />
-                <PaymentAmount
-                  payment={payment}
-                  setPayment={setPayment}
-                />
+                {selectedLoan && (
+                  <>
+                    <PaymentAmount
+                      payment={payment}
+                      setPayment={setPayment}
+                    />
+                  </>
+                )}
                 { error && <Error>{error}</Error>}
                 {selectedLoan && payment && (
                   <>
                     <SubmitPaymentForm onSubmit={submitPaymentApplication}>
                       <InfoHeader>Here is your summary of your selection, please review!</InfoHeader>
-                      <InfoLine>Loan selected to pay: {selectedLoan.loanAmount}$</InfoLine>
+                      <InfoLine>Balance to pay: {selectedLoan.loanAmount}$</InfoLine>
                       <InfoLine>Payment: {payment}$</InfoLine>
                       <InfoLine>Due Date: {new Date(selectedLoan.dueDate).toUTCString()}</InfoLine>
                       <SubmitButton>Click here to submit payment!</SubmitButton>

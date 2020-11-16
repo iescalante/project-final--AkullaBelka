@@ -7,7 +7,7 @@ require("dotenv").config();
 const { latePaymentScheduler } = require('./cronHandler');
 
 const PORT = 4000;
-latePaymentScheduler();
+// latePaymentScheduler();
 express()
   .use(function (req,res,next) {
     res.header(

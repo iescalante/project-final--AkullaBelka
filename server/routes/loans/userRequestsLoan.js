@@ -11,7 +11,7 @@ const options = {
 module.exports = async (req, res) => {
     const client = await MongoClient(MONGO_URI, options);
     const { userId, lenderId } = req.params;
-    const { loanAmount, selectedRate, daysToPay, paidAmount, lastTimeChecked } = req.body;
+    const { loanAmount, selectedRate, daysToPay,paidAmount, balance, lastTimeChecked } = req.body;
     
     try {
         await client.connect();
@@ -34,6 +34,7 @@ module.exports = async (req, res) => {
             transactionDate: transactionAndDueDates(daysToPay).transactionDate,
             loanAmount,
             paidAmount,
+            balance,
             lenderId,
             dueDate: transactionAndDueDates(daysToPay).dueDate,
             selectedRate,
@@ -45,7 +46,7 @@ module.exports = async (req, res) => {
             userId,
             lenderId,
             loanAmount,
-            paidAmount,
+            balance,
             transactionDate: transactionAndDueDates(daysToPay).transactionDate,
             dueDate: transactionAndDueDates(daysToPay).dueDate,
             selectedRate,

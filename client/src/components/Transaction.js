@@ -9,7 +9,10 @@ const Transaction = ({transaction}) => {
         ?<TransactionHeader>+{transaction.loanAmount}</TransactionHeader>
         :<TransactionHeader>-{transaction.paidAmount}</TransactionHeader>  
       }
-      <TransactionHeader>{new Date(transaction.dueDate).toUTCString() || "N/Ap"}</TransactionHeader>
+      {transaction.dueDate
+        ?<TransactionHeader>{new Date(transaction.dueDate).toUTCString()}</TransactionHeader>
+        :<TransactionHeader>N/AP</TransactionHeader>
+      }
       {transaction.selectedRate
         ?<TransactionHeader>{(transaction.selectedRate)*100}%</TransactionHeader>
         :<TransactionHeader>N/Ap</TransactionHeader>

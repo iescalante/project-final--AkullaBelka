@@ -20,26 +20,24 @@ const latePaymentScheduler = async(req,res) => {
     const job = new CronJob('0-59/10 * * * * *', async function(req,res) {
       const d = new Date();
       const loansPastDue = await db.collection("loans").find({dueDate: {$lt: new Date()}}).toArray();
+      
       const realLoansPastDue = loansPastDue.filter((loan) => {
-        return loan.loanAmount > loan.paidAmount;
+        return loan.balance > 0
       });
-  
       if (realLoansPastDue) {
         console.log(realLoansPastDue);
         realLoansPastDue.forEach(async (loan) => {
-          const realLoanToPay = loan.loanAmount - loan.paidAmount;
-          console.log(realLoanToPay);
-          if (realLoanToPay > 0) {
-            await db.collection("loans").findOneAndUpdate({_id:ObjectID(loan._id)},{$inc:{loanAmount: Math.round(realLoanToPay*loan.selectedRate)}});
-            await db.collection("users").findOneAndUpdate({_id:ObjectID(loan.userId)},{$inc:{score: -20}});
-            await db.collection("transactions").insertOne({
-              userId: loan.userId,
-              transactionDate: new Date(),
-              interest: Math.round(realLoanToPay*loan.selectedRate),
-              lenderId: loan.lenderId,
-            });
-          }
-        });
+          const realLoanToPay = loan.balance;
+          await db.collection("loans").findOneAndUpdate({_id:ObjectID(loan._id)},{$inc:{balance: Math.round(realLoanToPay*loan.selectedRate)}});
+          await db.collection("users").findOneAndUpdate({_id:ObjectID(loan.userId)},{$inc:{score: -20}});
+          await db.collection("users").findOneAndUpdate({_id:ObjectID(loan.userId)},{$inc:{totalLoaned: Math.round(realLoanToPay*loan.selectedRate)}});
+          await db.collection("transactions").insertOne({
+            userId: loan.userId,
+            transactionDate: new Date(),
+            addedInterest: Math.round(realLoanToPay*loan.selectedRate),
+            lenderId: loan.lenderId,
+          });
+        })
       }
       console.log({tenSecond: d})
     });
