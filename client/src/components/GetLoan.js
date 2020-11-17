@@ -14,11 +14,14 @@ const GetLoan = () => {
   const [availableLenders, setAvailableLenders] = React.useState(null);
   const [selectedLender, setSelectedLender] = React.useState(null);
   const [isLoading, setIsLoading] = React.useState(false);
+  const [error, setError] = React.useState(false);
   const { userData, setUserData, setLoanConfirmation } = React.useContext(AppContext);
   const history = useHistory();
 
   const getRate = (ev) => {
     ev.preventDefault();
+    setError(false);
+    setSelectedLender(null);
     setIsLoading(true);
     setAvailableRate(null);
     setAvailableLenders(null);
@@ -32,6 +35,7 @@ const GetLoan = () => {
 
   const submitLoanApplication = (ev) => {
     ev.preventDefault();
+    setError(false);
     const requestOptions = {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
@@ -46,14 +50,18 @@ const GetLoan = () => {
   fetch(`/loans/${userData.currentUser._id}/${selectedLender}`, requestOptions)
       .then(response => response.json())
       .then((responseBody) => {
-        console.log(userData);
-        const newUser = {...userData.currentUser, totalLoaned: Number(loan) + userData.currentUser.totalLoaned}
-        setUserData({
-          ...userData,
-          currentUser: newUser
-        });
-        setLoanConfirmation(responseBody);
-        history.push("/main/get-loan/confirmation");
+        if (responseBody.status === 400) {
+          setError(true);
+        } else {
+          console.log(userData);
+          const newUser = {...userData.currentUser, totalLoaned: Number(loan) + userData.currentUser.totalLoaned}
+          setUserData({
+            ...userData,
+            currentUser: newUser
+          });
+          setLoanConfirmation(responseBody);
+          history.push("/main/get-loan/confirmation");
+        }
       });
   };
 
@@ -69,7 +77,7 @@ const GetLoan = () => {
         getRate={getRate}
         isLoading={isLoading}
       />
-      {availableRate  &&
+      {availableRate  && !error &&
         <AvailableLenders 
           loan={loan}
           availableLenders={availableLenders}
@@ -78,7 +86,8 @@ const GetLoan = () => {
           setSelectedLender={setSelectedLender}
         />
       }
-      {selectedRate && selectedLender &&
+      {error && <Error>You've reached your loan limit! Pay first, then keep the business going! Or choose another amount.</Error>}
+      {selectedRate && selectedLender && !error &&
         <SubmitLoan onSubmit={submitLoanApplication}>
           <InfoHeader>Here is a summary of your selections, please review!</InfoHeader>
           <InfoLine>Loan: {loan}$</InfoLine>
@@ -90,6 +99,15 @@ const GetLoan = () => {
     </Container>
   )
 };
+const Error = styled.p`
+  margin: 15px auto;
+  padding: 10px;
+  max-width: 295px;
+  text-align: justify;
+  border: 3px #d21717 dotted;
+  font-weight: bold;
+  color: #822020;
+`;
 const SubmitLoan = styled.form`
   display:flex;
   flex-direction:column;
