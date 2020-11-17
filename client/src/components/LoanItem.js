@@ -25,7 +25,7 @@ const LoanItem = ({loanId,transactionDate,dueDate,loanAmount,selectedRate,balanc
       <LoanInfoList>
         <LoanInfo>Transaction Date: {new Date(transactionDate).toUTCString()}</LoanInfo>
         <LoanInfo>Due Date: {new Date(dueDate).toUTCString()}</LoanInfo>
-        <LoanInfo>Days before due date: {daysPassed(dueDate,lastTimeChecked).toFixed(5)}</LoanInfo>
+        <LoanInfo>Days before due date: {daysPassed(dueDate,lastTimeChecked).toFixed(0)}</LoanInfo>
         <LoanInfo>Selected rate for loan: {selectedRate*100}%</LoanInfo>
         <LoanInfo>Initial Loan: {loanAmount}$</LoanInfo>
         <LoanInfo>Loan Balance: {balance}$</LoanInfo>
