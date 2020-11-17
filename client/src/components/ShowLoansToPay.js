@@ -1,12 +1,10 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styled from 'styled-components';
 import { AppContext } from '../AppContext';
 
-const ShowLoansToPay = ({setLoanData, setIsLoading}) => {
+const ShowLoansToPay = ({loanData, setLoanData, setIsLoading}) => {
   const { userData } = React.useContext(AppContext);
-
-  const getUserLoans = (ev) => {
-    ev.preventDefault();
+  useEffect(() => {
     setIsLoading(true);
     fetch(`/loans/all/${userData.currentUser._id}`)
     .then(res => res.json())
@@ -14,12 +12,11 @@ const ShowLoansToPay = ({setLoanData, setIsLoading}) => {
       setLoanData(responseBody.validLoansToPay);
       setIsLoading(false);
     })
-  };
+  }, [])
 
   return (
     <StyledContainer>
-      Show me my loans to pay today!
-      <ShowLoansButton onClick={getUserLoans}>Show Loans!</ShowLoansButton>
+      {loanData === null || loanData.length == 0 && (<div>No loans to pay! Maybe you might want to get one! </div>)}
     </StyledContainer>
   );
 };
