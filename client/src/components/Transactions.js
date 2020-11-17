@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styled from 'styled-components';
 import Container from '../reusable-components/Container';
 import Header from '../reusable-components/Header';
@@ -10,9 +10,7 @@ const Transactions = () => {
   const { userData } = React.useContext(AppContext);
   const [isLoading, setIsLoading] = React.useState(false);
   const [transactions, setTransactions] = React.useState(null);
-
-  const showTransactions = (ev) => {
-    ev.preventDefault();
+  useEffect(() => {
     setIsLoading(true);
     fetch(`/transactions/${userData.currentUser._id}`)
     .then(res => res.json())
@@ -21,14 +19,13 @@ const Transactions = () => {
       setTransactions(responseBody.transactions);
       setIsLoading(false);
     })
+  }, []);
 
-  }
   return(
     <Container>
       <Header pageTitle={"Transactions Page"}/>
       <TransactionsIntro>
         This is where you can view all your transactions! (+: Loan; -: Payment)
-        <ShowTransactionsButton onClick={showTransactions}>Show All Transactions</ShowTransactionsButton>
       </TransactionsIntro>
       <TransactionsContainer>
         <TransactionsHeadersList>
