@@ -16,7 +16,7 @@ const Profile = () => {
         <UserInfo>LAST NAME : {userData.currentUser.lastName}</UserInfo>
         <UserInfo>E-MAIL : {userData.currentUser.email}</UserInfo>
         <UserInfo>SCORE : {userData.currentUser.score}</UserInfo>
-        <UserInfo>TOTAL LOANED ($) : {userData.currentUser.totalLoaned}</UserInfo>
+        <UserInfo>TOTAL BORROWED ($) : {userData.currentUser.totalLoaned}</UserInfo>
         <UserInfo>LOAN LIMIT ($) : {userData.currentUser.loanLimit}</UserInfo>
         <UserInfo>Lender? {userData.currentUser.lenderProfile.lender ? "Yes" : "No"}</UserInfo>
         {userData.currentUser.lenderProfile.lender && 
