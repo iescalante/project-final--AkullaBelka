@@ -6,8 +6,11 @@ const Transaction = ({transaction}) => {
     <TransactionList>
       <TransactionHeader>{new Date(transaction.transactionDate).toUTCString()}</TransactionHeader>
       {transaction.loanAmount  
-        ?<TransactionHeader>+{transaction.loanAmount}</TransactionHeader>
-        :<TransactionHeader>-{transaction.paidAmount}</TransactionHeader>  
+        ? <TransactionHeader>+{transaction.loanAmount}</TransactionHeader>
+        : (transaction.paidAmount
+          ? <TransactionHeader>-{transaction.paidAmount}</TransactionHeader>
+          : <TransactionHeader>+{transaction.addedInterest}</TransactionHeader>
+          )  
       }
       {transaction.dueDate
         ?<TransactionHeader>{new Date(transaction.dueDate).toUTCString()}</TransactionHeader>
@@ -15,7 +18,7 @@ const Transaction = ({transaction}) => {
       }
       {transaction.selectedRate
         ?<TransactionHeader>{(transaction.selectedRate)*100}%</TransactionHeader>
-        :<TransactionHeader>N/Ap</TransactionHeader>
+        :<TransactionHeader>N/AP</TransactionHeader>
       }
     </TransactionList>
   )
