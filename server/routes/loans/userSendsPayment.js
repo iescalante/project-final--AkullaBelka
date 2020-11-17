@@ -29,33 +29,34 @@ module.exports = async (req, res) => {
             message: "Sorry, you can't pay more than what you owe!"
           })
         } else {
-            await db.collection("users").findOneAndUpdate({ _id: ObjectID(userId) },{$inc: {totalLoaned: -Number(paidAmount), score: 1}});
-            await db.collection("users").findOneAndUpdate({_id: ObjectID(lenderId)}, {$inc:{"lenderProfile.totalLoan": -Number(paidAmount)}});
-            await db.collection("users").findOneAndUpdate({_id: ObjectID(lenderId)}, {$push:{"lenderProfile.usersId": {userId, paidAmount: Number(paidAmount)}}});
-            await db.collection("loans").findOneAndUpdate({ _id: ObjectID(loanId) },{$inc: {balance: -Number(paidAmount), paidAmount: Number(paidAmount)}});
+          await db.collection("users").findOneAndUpdate({ _id: ObjectID(userId) },{$inc: {totalLoaned: -Number(paidAmount), score: 1}});
+          await db.collection("users").findOneAndUpdate({_id: ObjectID(lenderId)}, {$push:{"lenderProfile.usersId": {userId, paidAmount: Number(paidAmount)}}});
+          await db.collection("loans").findOneAndUpdate({ _id: ObjectID(loanId) },{$inc: {balance: -Number(paidAmount), paidAmount: Number(paidAmount)}});
+          
+          loanToPay.paidAmount <= loanToPay.balance
+            ? await db.collection("users").findOneAndUpdate({_id: ObjectID(lenderId)}, {$inc:{"lenderProfile.totalLoan": -Number(paidAmount)}}) 
+            : await db.collection("users").findOneAndUpdate({_id: ObjectID(lenderId)}, {$inc:{"lenderProfile.availableLoan": Number(paidAmount)}})
+          
             await db.collection("transactions").insertOne({
-              userId,
-              transactionDate: transactionAndDueDates(currentDay).transactionDate,
-              paidAmount,
-              lenderId,
-            });
-            if (loanToPay.balance === 0) {
-              console.log({extraInterest: loanToPay.paidAmount - loanToPay.loanAmount})
-            }
-            res.status(200).json({
-              status:200,
-              userId,
-              lenderId,
-              loanId,
-              paidAmount,
-              balance,
-              transactionDate: transactionAndDueDates(currentDay).transactionDate
-            });
+            userId,
+            transactionDate: transactionAndDueDates(currentDay).transactionDate,
+            paidAmount,
+            lenderId,
+          });
+          res.status(200).json({
+            status:200,
+            userId,
+            lenderId,
+            loanId,
+            paidAmount,
+            balance,
+            transactionDate: transactionAndDueDates(currentDay).transactionDate
+          });
         }
     } catch(err) {
-        console.log(err.stack);
-        res.status(500).json({status: 500, message: err.message})
+      console.log(err.stack);
+      res.status(500).json({status: 500, message: err.message})
     }
     client.close();
-        console.log("disconnected!");
+    console.log("disconnected!");
 }
