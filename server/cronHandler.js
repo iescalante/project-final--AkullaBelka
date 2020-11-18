@@ -28,6 +28,7 @@ const latePaymentScheduler = async(req,res) => {
         console.log(realLoansPastDue);
         realLoansPastDue.forEach(async (loan) => {
           const realLoanToPay = loan.balance;
+          console.log(realLoanToPay);
           await db.collection("loans").findOneAndUpdate({_id:ObjectID(loan._id)},{$inc:{balance: Math.round(realLoanToPay*loan.selectedRate)}});
           await db.collection("users").findOneAndUpdate({_id:ObjectID(loan.userId)},{$inc:{score: -20}});
           await db.collection("users").findOneAndUpdate({_id:ObjectID(loan.userId)},{$inc:{totalLoaned: Math.round(realLoanToPay*loan.selectedRate)}});
