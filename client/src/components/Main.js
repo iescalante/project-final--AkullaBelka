@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import MainHeader from '../reusable-components/MainHeader';
 import Container from '../reusable-components/Container';
+import Footer from '../reusable-components/Footer';
 import { Link } from 'react-router-dom';
 
 const Homepage = () => {
@@ -43,31 +44,32 @@ const Homepage = () => {
         <MainLinkContainer>
           <StyledLinkList>
             <StyledLinkContainer>
-              <StyledLink onMouseEnter={enterProfile} onMouseLeave={leaveProfile} to="/main/profile">Profile</StyledLink>
+              <StyledLink onMouseEnter={enterProfile} onMouseLeave={leaveProfile} to="/main/profile">PROFILE</StyledLink>
               <LinkInformation style={{visibility: profileVisible ? "visible" : "hidden"}}>
                 View personal information on user, personal score, loans, etc
               </LinkInformation>
             </StyledLinkContainer>
             <StyledLinkContainer>
-              <StyledLink onMouseEnter={enterLoan} onMouseLeave={leaveLoan} to="/main/get-loan">Get a Loan</StyledLink>
+              <StyledLink onMouseEnter={enterLoan} onMouseLeave={leaveLoan} to="/main/get-loan">GET A LOAN</StyledLink>
               <LinkInformation style={{visibility: loanVisible ? "visible" : "hidden"}}>
                 Request a loan to available users with available rates depending on personal score
               </LinkInformation>
             </StyledLinkContainer>
             <StyledLinkContainer>
-              <StyledLink onMouseEnter={enterPayment} onMouseLeave={leavePayment} to="/main/make-payment">Make A Payment</StyledLink>
+              <StyledLink onMouseEnter={enterPayment} onMouseLeave={leavePayment} to="/main/make-payment">MAKE A PAYMENT</StyledLink>
               <LinkInformation style={{visibility: paymentVisible ? "visible" : "hidden"}}>
                 Make a payment to your loans and clear your outstanding debts
               </LinkInformation>
             </StyledLinkContainer>
             <StyledLinkContainer>
-              <StyledLink onMouseEnter={enterTransaction} onMouseLeave={leaveTransaction} to="/main/transactions">Transactions</StyledLink>
+              <StyledLink onMouseEnter={enterTransaction} onMouseLeave={leaveTransaction} to="/main/transactions">TRANSACTIONS</StyledLink>
               <LinkInformation style={{visibility: transactionVisible ? "visible" : "hidden"}}>
                 View all transactions with details on start and due date, loan amounts, payments, etc
               </LinkInformation>
             </StyledLinkContainer>
           </StyledLinkList>
         </MainLinkContainer>
+        <Footer/>
     </Container>
   )
 };
@@ -93,6 +95,7 @@ const StyledLinkContainer = styled.div`
 const StyledLink = styled(Link)`
   text-decoration: none;
   color: #fff;
+  font-size: 1.5em;
 `;
 const LinkInformation = styled.p`
   color: black;

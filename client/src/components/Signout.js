@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import {useHistory} from "react-router-dom";
 import Spinner from '../Spinner';
 import Container from '../reusable-components/Container';
+import Footer from '../reusable-components/Footer';
 
 const Signout = () => {
   const history = useHistory();
@@ -14,6 +15,7 @@ const Signout = () => {
       <Message>Thank you for using AkullaBelka!</Message>
       <Message>See you soon!</Message>
       <Spinner/>
+      <Footer/>
     </Container>
     )
 };

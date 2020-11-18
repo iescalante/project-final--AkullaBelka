@@ -4,6 +4,7 @@ import Logo from '../assets/akullabelka_logo.svg';
 import {useHistory} from "react-router-dom";
 import { AppContext } from "../AppContext";
 import Container from '../reusable-components/Container';
+import Footer from '../reusable-components/Footer';
 
 const Login = () => {
   const {email, setEmail, password, setPassword,setUserData} = React.useContext(AppContext);
@@ -56,6 +57,7 @@ const Login = () => {
             <SigninText>Come on in and try us!</SigninText>
             <SigninButton onClick={handleSignin} type="button">Sign In!</SigninButton>
         </SigninDiv>
+        <Footer/>
         </Container>
     )
 };
@@ -69,6 +71,10 @@ const LoginForm = styled.form`
   display: flex;
   flex-direction: column;
   margin: 0 auto;
+  border: 3px solid beige;
+  padding: 25px;
+  border-radius: 15px;
+  margin-bottom: 15px;
 `;
 const InputLogin = styled.input`
   flex:2;
@@ -87,6 +93,9 @@ const SigninDiv = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0 auto;
+  border: 3px solid beige;
+  padding: 25px;
+  border-radius: 15px;
 `;
 const SigninButton = styled.button`
   background:goldenrod;

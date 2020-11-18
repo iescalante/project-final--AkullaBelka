@@ -40,6 +40,9 @@ const SingleLoanDiv = styled.div`
 `;
 const LoanInfoList = styled.ul`
   flex: 3;
+  & :nth-child(2) {
+    color:red;
+  }
 `;
 const LoanInfo = styled.li`
   font-weight: bold;

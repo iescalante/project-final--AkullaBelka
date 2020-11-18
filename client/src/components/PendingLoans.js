@@ -6,7 +6,7 @@ import LoanItem from './LoanItem';
 const PendingLoans = ({setSelectedLoan, loanData}) => {
   return(
     <Container>
-      {loanData.map((loan)=> {
+      {loanData.map((loan) => {
         if (loan.balance > 0) {
           return (
             <LoanItem
@@ -24,9 +24,4 @@ const PendingLoans = ({setSelectedLoan, loanData}) => {
     </Container>
   )
 };
-const NoLoans = styled.div`
-  margin: 15px auto;
-  font-size: 1.5em;
-  font-weight: bold;
-`;
 export default PendingLoans;

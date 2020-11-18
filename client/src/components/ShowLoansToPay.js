@@ -16,7 +16,7 @@ const ShowLoansToPay = ({loanData, setLoanData, setIsLoading}) => {
 
   return (
     <StyledContainer>
-      {loanData === null || loanData.length == 0 && (<div>No loans to pay! Maybe you might want to get one! </div>)}
+      {(loanData === null || loanData.length === 0) && (<div>No loans to pay! Maybe you might want to get one! </div>)}
     </StyledContainer>
   );
 };
@@ -26,11 +26,5 @@ const StyledContainer = styled.div`
   margin-top: 50px;
   text-align: center;
   font-weight:bold;
-`;
-const ShowLoansButton = styled.button`
-  margin: 10px auto;
-  width: fit-content;
-  background: goldenrod;
-  cursor: pointer;
 `;
 export default ShowLoansToPay;

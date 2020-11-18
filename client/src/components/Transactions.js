@@ -4,6 +4,7 @@ import Container from '../reusable-components/Container';
 import Header from '../reusable-components/Header';
 import Transaction from './Transaction';
 import Spinner from '../Spinner';
+import Footer from '../reusable-components/Footer';
 import { AppContext } from '../AppContext';
 
 const Transactions = () => {
@@ -19,7 +20,7 @@ const Transactions = () => {
       setTransactions(responseBody.transactions);
       setIsLoading(false);
     })
-  }, []);
+  }, [userData.currentUser._id]);
 
   return(
     <Container>
@@ -42,19 +43,13 @@ const Transactions = () => {
           })
         )}
       </TransactionsContainer>
+      <Footer/>
     </Container>
   )
 };
 const TransactionsIntro = styled.h1`
   font-size: 1.3em;
   margin: 15px 0;
-`;
-const ShowTransactionsButton = styled.button`
-  display:block;
-  margin: 10px auto;
-  width:fit-content;
-  background:goldenrod;
-  cursor: pointer;
 `;
 const TransactionsContainer = styled.div`
   display: flex;

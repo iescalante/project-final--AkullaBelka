@@ -5,6 +5,7 @@ import Container from '../reusable-components/Container';
 import Header from '../reusable-components/Header';
 import AvailableRates from "./AvailableRates";
 import AvailableLenders from './AvailableLenders';
+import Footer from '../reusable-components/Footer';
 import { AppContext } from '../AppContext';
 
 const GetLoan = () => {
@@ -68,6 +69,13 @@ const GetLoan = () => {
   return(
     <Container>
       <Header pageTitle={"Loan Application Page"}/>
+      <Instructions>
+        Follow these simple steps:
+        <InstructionStep>Decide on the amount of the loan you need and get your rate</InstructionStep>
+        <InstructionStep>Select your available rate</InstructionStep>
+        <InstructionStep>Decide on the lender to choose and select</InstructionStep>
+        <InstructionStep>Review your summary and click on "GET YOUR LOAN!"</InstructionStep>
+      </Instructions>
       <AvailableRates
         availableRate={availableRate}
         loan={loan}
@@ -93,12 +101,22 @@ const GetLoan = () => {
           <InfoLine>Loan: {loan}$</InfoLine>
           <InfoLine>Rate Selected: {selectedRate*100}%</InfoLine>
           <InfoLine>Selected Lender's ID: {selectedLender}</InfoLine>
-          <SubmitButton type='submit'>Click here to submit everything</SubmitButton>
+          <SubmitButton type='submit'>GET YOUR LOAN!</SubmitButton>
         </SubmitLoan>
       }
+      <Footer/>
     </Container>
   )
 };
+const Instructions = styled.ol`
+  display:flex;
+  flex-direction:column;
+  list-style: decimal;
+  margin: 0 auto;
+`;
+const InstructionStep = styled.li`
+  margin: 10px 0;
+`;
 const Error = styled.p`
   margin: 15px auto;
   padding: 10px;
@@ -122,7 +140,7 @@ const InfoLine = styled.p`
 `;
 const SubmitButton = styled.button`
   margin: 10px auto;
-  width: fit-content;
+  padding: 20px 60px;
   background: goldenrod;
   cursor: pointer;
 `;

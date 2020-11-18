@@ -7,6 +7,7 @@ import Spinner from '../Spinner';
 import ShowLoansToPay from './ShowLoansToPay';
 import PendingLoans from './PendingLoans';
 import PaymentAmount from './PaymentAmount';
+import Footer from '../reusable-components/Footer';
 import {AppContext} from '../AppContext';
 
 const MakeAPayment = () => {
@@ -95,6 +96,7 @@ const MakeAPayment = () => {
             )}
           </>
         )}
+        <Footer/>
       </Container>
     )
 };
@@ -102,6 +104,9 @@ const SubmitPaymentForm = styled.form`
   display:flex;
   flex-direction:column;
   margin: 0 auto;
+  & :nth-child(4) {
+    color:red;
+  }
 `;
 const InfoHeader = styled.h2`
   font-size: 1.2em;

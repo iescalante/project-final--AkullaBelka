@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Logo from '../assets/akullabelka_logo.svg';
 import { useHistory } from 'react-router-dom';
+import Footer from '../reusable-components/Footer';
 
 const Error = () => {
   const history = useHistory();
@@ -14,6 +15,7 @@ const Error = () => {
         <h1>Hey....sorry there's an error somewhere</h1>
         <LogoImage src={Logo} onClick={handleGoLogin} />
         <h2>Click on Logo to go back to the login</h2>
+        <Footer/>
       </ErrContainer>
     </>
     )

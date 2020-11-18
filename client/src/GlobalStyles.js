@@ -70,6 +70,17 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+button {
+  border-radius:15px;
+  padding: 10px;
+  border:1px solid brown;
+}
+a {
+  font-size: 2em;
+  :hover {
+    transform: scale(1.2);
+  }
+}
 `;
 
 
