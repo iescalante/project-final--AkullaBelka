@@ -27,7 +27,5 @@ const InfoLine = styled.p`
 const SelectLenderButton = styled.button`
   margin: 10px auto;
   width:fit-content;
-  background:goldenrod;
-  cursor: pointer;
 `;
 export default SelectedLender;

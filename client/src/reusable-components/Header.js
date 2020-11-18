@@ -40,10 +40,9 @@ const TopMessage = styled.h1`
   font-size: 2rem;
 `;
 const SignoutLink = styled.a`
-  color:black;
+  color: #C8E0F4;
   text-decoration: none;
   flex:1;
   margin:auto;
-  cursor: pointer;
 `;
 export default Header;

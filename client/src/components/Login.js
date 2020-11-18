@@ -75,6 +75,7 @@ const LoginForm = styled.form`
   padding: 25px;
   border-radius: 15px;
   margin-bottom: 15px;
+  background: #508AA8;
 `;
 const InputLogin = styled.input`
   flex:2;
@@ -86,8 +87,6 @@ const LabelLogin = styled.label`
 `;
 const InputLoginButton = styled.button`
   margin: 10px 0;
-  background:goldenrod;
-  cursor: pointer;
 `;
 const SigninDiv = styled.div`
   display: flex;
@@ -96,12 +95,13 @@ const SigninDiv = styled.div`
   border: 3px solid beige;
   padding: 25px;
   border-radius: 15px;
+  background: #508AA8;
 `;
 const SigninButton = styled.button`
-  background:goldenrod;
-  cursor: pointer;
+  display:flex;
 `;
 const ErrorMsg = styled.p`
+  border-radius: 15px;
   padding: 10px;
   color: #560000;
   font-weight: bold;

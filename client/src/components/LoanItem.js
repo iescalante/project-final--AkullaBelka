@@ -49,10 +49,7 @@ const LoanInfo = styled.li`
 `;
 const SelectLoanButton = styled.button`
   flex: 1;
-  height: 50px;
   margin: auto;
   width: 300px;
-  background: goldenrod;
-  cursor: pointer;
 `;
 export default LoanItem;

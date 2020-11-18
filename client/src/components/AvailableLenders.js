@@ -73,8 +73,6 @@ const GetLendersLabel = styled.label`
 const GetLendersButton = styled.button`
   margin: 10px auto;
   width: fit-content;
-  background:goldenrod;
-  cursor: pointer;
 `;
 const NoLendersDiv = styled.div`
   margin: 10px auto;

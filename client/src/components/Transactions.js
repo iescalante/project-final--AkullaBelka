@@ -55,10 +55,10 @@ const TransactionsContainer = styled.div`
   display: flex;
   flex-direction: column;
   & ul:nth-child(n) {
-    background-color: grey;
+    background-color: #508AA8;
   }
   & ul:nth-child(2n){
-    background-color: white;
+    background-color: #031927;
   }
 `;
 const TransactionsHeadersList = styled.ul`

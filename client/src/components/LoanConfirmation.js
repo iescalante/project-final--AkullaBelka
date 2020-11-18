@@ -71,14 +71,10 @@ const ConfirmationItem = styled.li`
 const PrintButton = styled.button`
   margin: 10px auto;
   width:fit-content;
-  background:goldenrod;
-  cursor: pointer;
   margin-top: 15px;
 `;
 const GoHomeButton = styled.button`
   margin: 10px auto;
   width:fit-content;
-  background:goldenrod;
-  cursor: pointer;
 `;
 export default LoanConfirmation;

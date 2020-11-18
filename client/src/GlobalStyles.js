@@ -53,7 +53,8 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1.6;
-    background: #2a93de;
+  background: #031927;
+  color: #C8E0F4;
 }
 ol, ul {
 	list-style: none;
@@ -71,12 +72,20 @@ table {
 	border-spacing: 0;
 }
 button {
+  display:flex;
+  justify-content: center;
   border-radius:15px;
   padding: 10px;
-  border:1px solid brown;
+  border:2px solid #BA1200;
+  background: #9DD1F1;
+  color: #031927;
+  cursor:pointer;
+
 }
 a {
   font-size: 2em;
+  cursor:pointer;
+  color: #C8E0F4;
   :hover {
     transform: scale(1.2);
   }

@@ -38,9 +38,9 @@ const Profile = () => {
 };
 const ProfileDiv = styled.div`
   display:flex;
-  color: black;
-  margin:30px;
-  border: 1px solid beige;
+  color: #C8E0F4;
+  margin: 30px;
+  border: 3px solid #BA1200;
   padding: 15px;
   border-radius: 15px;
   font-size: 1.2em;
@@ -52,7 +52,7 @@ const PersonalInfo = styled.div`
   margin: 0 35px;
   align-items: center;
   justify-content: center;
-  border-right:1px solid beige;
+  border-right:1px solid #BA1200;
 `;
 const FinancialInfo = styled.div`
   display:flex;

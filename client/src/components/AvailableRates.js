@@ -5,7 +5,6 @@ import SelectedRate from './SelectedRate';
 import Spinner from '../Spinner';
 
 const AvailableRates = ({ availableRate, loan, setLoan, selectedRate, setSelectedRate, getRate, isLoading}) => {
-
   const changeLoanAmount = (ev) => {
     setLoan(ev.target.value);
   };
@@ -59,8 +58,6 @@ const LoanInput = styled.input`
 const GetRateButton = styled.button`
   margin: 10px auto;
   width: fit-content;
-  background:goldenrod;
-  cursor:pointer;
 `;
 const RatesDiv = styled.div`
   display:flex;

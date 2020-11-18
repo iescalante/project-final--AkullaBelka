@@ -141,7 +141,5 @@ const InfoLine = styled.p`
 const SubmitButton = styled.button`
   margin: 10px auto;
   padding: 20px 60px;
-  background: goldenrod;
-  cursor: pointer;
 `;
 export default GetLoan;

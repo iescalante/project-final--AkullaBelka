@@ -108,7 +108,7 @@ const CreateUser = () => {
               Total Loaned ($):
               <DisabledInput type="number" name="totalLoaned" value="0" disabled={true}/>
             </LabelSignin>
-            <InputSigninButton type="submit" value="Create Account"/>
+            <InputSigninButton type="submit">CREATE ACCOUNT</InputSigninButton>
           </SigninForm>
         </StyledContainer>
     )
@@ -156,9 +156,8 @@ const Checkbox = styled.input`
 const DisabledInput = styled(InputSignin)`
   cursor: not-allowed;
 `;
-const InputSigninButton = styled.input`
-  background:goldenrod;
-  cursor: pointer;
+const InputSigninButton = styled.button`
+  display:flex;
 `;
 const LenderTypeDiv = styled.div`
   display:flex;

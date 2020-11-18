@@ -88,7 +88,7 @@ const MakeAPayment = () => {
                       <InfoLine>Balance to pay: {selectedLoan.loanAmount}$</InfoLine>
                       <InfoLine>Payment: {payment}$</InfoLine>
                       <InfoLine>Due Date: {new Date(selectedLoan.dueDate).toUTCString()}</InfoLine>
-                      <SubmitButton>Click here to submit payment!</SubmitButton>
+                      <SubmitButton>SUBMIT PAYMENT!</SubmitButton>
                     </SubmitPaymentForm>
                   </>
                 ) }
@@ -118,8 +118,6 @@ const InfoLine = styled.p`
 const SubmitButton = styled.button`
   margin: 10px auto;
   width: fit-content;
-  background: goldenrod;
-  cursor: pointer;
 `;
 const Error = styled.p`
   margin: 15px auto;

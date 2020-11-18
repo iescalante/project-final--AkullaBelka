@@ -28,7 +28,5 @@ const InfoLine = styled.p`
 const SelectRateButton = styled.button`
   margin: 10px auto;
   width: fit-content;
-  background:goldenrod;
-  cursor: pointer;
 `;
 export default SelectedRate;
