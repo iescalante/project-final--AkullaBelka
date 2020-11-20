@@ -1,6 +1,6 @@
 # AkullaBelka v1.0
 
-![AkullaBelka Logo](client\src\assets\akullabelka_logo.svg)
+![AkullaBelka Logo](/client/src/assets/akullabelka_logo.svg)
 
 What is AkullaBelka? This app is my final project for the Concordia Bootcamps.
 
