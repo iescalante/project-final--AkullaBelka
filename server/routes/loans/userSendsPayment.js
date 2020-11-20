@@ -32,11 +32,7 @@ module.exports = async (req, res) => {
           await db.collection("users").findOneAndUpdate({ _id: ObjectID(userId) },{$inc: {totalLoaned: -Number(paidAmount), score: 1}});
           await db.collection("users").findOneAndUpdate({_id: ObjectID(lenderId)}, {$push:{"lenderProfile.usersId": {userId, paidAmount: Number(paidAmount)}}});
           await db.collection("loans").findOneAndUpdate({ _id: ObjectID(loanId) },{$inc: {balance: -Number(paidAmount), paidAmount: Number(paidAmount)}});
-          
-          (loanToPay.balance > 0 && loanToPay.paidAmount >= loanToPay.loanAmount)
-            ? await db.collection("users").findOneAndUpdate({_id: ObjectID(lenderId)}, {$inc:{"lenderProfile.availableLoan": Number(paidAmount)}})
-            : await db.collection("users").findOneAndUpdate({_id: ObjectID(lenderId)}, {$inc:{"lenderProfile.totalLoan": -Number(paidAmount)}})  
-
+          await db.collection("users").findOneAndUpdate({_id: ObjectID(lenderId)}, {$inc:{"lenderProfile.totalLoan": -Number(paidAmount)}})  
           await db.collection("transactions").insertOne({
             userId,
             transactionDate: transactionAndDueDates(currentDay).transactionDate,

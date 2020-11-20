@@ -32,6 +32,8 @@ const latePaymentScheduler = async(req,res) => {
           await db.collection("loans").findOneAndUpdate({_id:ObjectID(loan._id)},{$inc:{balance: Math.round(realLoanToPay*loan.selectedRate)}});
           await db.collection("users").findOneAndUpdate({_id:ObjectID(loan.userId)},{$inc:{score: -20}});
           await db.collection("users").findOneAndUpdate({_id:ObjectID(loan.userId)},{$inc:{totalLoaned: Math.round(realLoanToPay*loan.selectedRate)}});
+          await db.collection("users").findOneAndUpdate({_id:ObjectID(loan.lenderId)},{$inc:{"lenderProfile.availableLoan": Math.round(realLoanToPay*loan.selectedRate)}});
+          await db.collection("users").findOneAndUpdate({_id:ObjectID(loan.lenderId)},{$inc:{"lenderProfile.totalLoan": Math.round(realLoanToPay*loan.selectedRate)}});
           await db.collection("transactions").insertOne({
             userId: loan.userId,
             transactionDate: new Date(),
