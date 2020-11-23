@@ -10,14 +10,12 @@ const Login = () => {
   const {email, setEmail, password, setPassword,setUserData} = React.useContext(AppContext);
   const history = useHistory();
   const [error, setError] = React.useState("");
-  console.log(email,password);
 
   const handleLogin = (ev) => {
     ev.preventDefault();
     fetch(`/users/${email}/${password}`)
     .then((res) => res.json())
     .then((responseBody) => {
-      console.log(responseBody);
       if (responseBody.user) {
         setUserData({currentUser:responseBody.user});
         setError("");

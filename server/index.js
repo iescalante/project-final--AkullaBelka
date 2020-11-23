@@ -26,6 +26,4 @@ express()
   .use("/", express.static(__dirname + "/"))
   .use("/", routes)
 
-  // .get("/", (req, res) => res.status(200).json("it's working BE") )
-
   .listen(PORT, () => console.info(`Listening on port ${PORT}`));

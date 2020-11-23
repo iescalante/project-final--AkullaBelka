@@ -21,7 +21,6 @@ const MakeAPayment = () => {
 
   const submitPaymentApplication = (ev) => {
     ev.preventDefault();
-    console.log("payment submitted!");
     const requestOptions = {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },

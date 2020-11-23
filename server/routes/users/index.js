@@ -7,5 +7,4 @@ users.get("/", getUsers);
 users.post("/",postNewUser);
 users.get("/:email/:password", validateSingleUser);
 
-
 module.exports = users;

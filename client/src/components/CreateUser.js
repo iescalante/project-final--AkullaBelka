@@ -35,7 +35,6 @@ const CreateUser = () => {
 
     const handleSubmit = (ev) => {
         ev.preventDefault();
-        console.log(newUser);
         const requestOptions = {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -62,7 +61,6 @@ const CreateUser = () => {
             history.push("/main");
           });
         };
-
     return (
         <StyledContainer>
           <TopHeader>Let's start with some information about yourself!</TopHeader>

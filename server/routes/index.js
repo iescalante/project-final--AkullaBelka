@@ -4,8 +4,6 @@ const loans = require("./loans");
 const transactions = require("./transactions");
 const rates = require("./rates");
 require("dotenv").config();
-// const companies = require("./companies");
-// const cart = require("./cart");
 
 routes.get("/", (req, res) => {
   try {

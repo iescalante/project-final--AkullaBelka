@@ -16,7 +16,6 @@ const Transactions = () => {
     fetch(`/transactions/${userData.currentUser._id}`)
     .then(res => res.json())
     .then(responseBody => {
-      console.log(responseBody.transactions);
       setTransactions(responseBody.transactions);
       setIsLoading(false);
     })

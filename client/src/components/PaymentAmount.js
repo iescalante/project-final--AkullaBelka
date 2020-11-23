@@ -6,7 +6,6 @@ const PaymentAmount = ({payment, setPayment}) => {
   const handleSelectedPayment = (ev) => {
     setPayment(ev.target.value);
   };
-  console.log(payment);
   return (
     <Container>
       <ChoosePaymentAmount>

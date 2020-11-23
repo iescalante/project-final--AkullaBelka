@@ -34,7 +34,6 @@ const AvailableLenders = ({ loan, availableLenders, setAvailableLenders, selecte
       setIsLoading(false);
     })
   };
-  console.log(availableLenders);
   return(
     <Container>
       <GetLendersForm onSubmit={getLenders}>

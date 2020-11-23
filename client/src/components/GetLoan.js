@@ -54,7 +54,6 @@ const GetLoan = () => {
         if (responseBody.status === 400) {
           setError(true);
         } else {
-          console.log(userData);
           const newUser = {...userData.currentUser, totalLoaned: Number(loan) + userData.currentUser.totalLoaned}
           setUserData({
             ...userData,

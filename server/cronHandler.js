@@ -50,9 +50,6 @@ const latePaymentScheduler = async(req,res) => {
   } catch(err) {
     console.log(err.stack);
   }
-
-  // client.close();
-  // console.log("disconnected!");
 };
 
 module.exports = {latePaymentScheduler};

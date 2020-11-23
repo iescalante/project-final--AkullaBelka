@@ -5,12 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
-    "start-all": "concurrently \"yarn server\" \"cd ../client && yarn start\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install npm && run build"
+    "start-all": "concurrently \"yarn start\" \"cd ../client && yarn react-scripts start\""
   },
-  "engines": {
-    "node": "14.13.0"
-},
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -19,7 +15,6 @@
     "cron": "^1.8.2",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "heroku": "^7.47.3",
     "mongodb": "^3.6.2",
     "morgan": "^1.10.0"
   },

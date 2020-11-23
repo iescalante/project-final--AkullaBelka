@@ -41,10 +41,8 @@ const Homepage = () => {
       top: 0,
       behavior: "smooth",
     });
-    },[]);
+  },[]);
     
-
-
   return (
     <Container>
       <MainHeader/>

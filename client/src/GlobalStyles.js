@@ -1,6 +1,4 @@
 import { createGlobalStyle } from 'styled-components';
-// bee6ce,bcffdb,8dffcd,68d89b,4f9d69(Magic mint, aero blue,aquamarine,medium aquamarine,forest green crayola)
-// {"Royal Blue Dark":"01295f","Teal Blue":"437f97","Olive Drab 3":"849324","Honey Yellow":"ffb30f","Red":"fd151b"}
 
 const GlobalStyles = createGlobalStyle`
  @import url('https://fonts.googleapis.com/css?family=Lato');
@@ -28,7 +26,6 @@ time, mark, audio, video {
 	padding: 0;
 	border: 0;
   font-size: 100%;
-	/* font-family: 'Lato',-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
   vertical-align: baseline;
   font-family: 'Roboto', sans-serif;
   ::-webkit-scrollbar {
@@ -91,6 +88,4 @@ a {
   }
 }
 `;
-
-
 export default GlobalStyles;

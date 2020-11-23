@@ -16,7 +16,6 @@ const LoanItem = ({loanId,transactionDate,dueDate,loanAmount,selectedRate,balanc
   };
   const daysPassed = (end,start) => {
     let howManyDaysLeft = (Date.parse(end) - Date.parse(start))/(1000*60*60*24);
-    console.log(end, start);
     return howManyDaysLeft;
   }
   

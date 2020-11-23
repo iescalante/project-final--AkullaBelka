@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import Container from '../reusable-components/Container';
 import LoanItem from './LoanItem';
 
