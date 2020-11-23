@@ -4,6 +4,8 @@
 
 What is AkullaBelka? This app is my final project for the Concordia Bootcamps.
 
+![AkullaBelka Demo](./AkullaBelkaDemo.gif)
+
 To summarize, it's a small-money lending app which allows Borrowers and Lenders to interact with each other in monetary transactions; in other words, build relationships with money as well as trust while keeping a flow of money between the users.
 
 ### Stack used:
@@ -29,10 +31,12 @@ To summarize, it's a small-money lending app which allows Borrowers and Lenders 
 
 - The biggest challenge in this project was to keep track of how the money was moving around from user to user and be able to balance at the end to avoid having negative numbers. It demanded tremendous diligence in the Backend which has been my weakness throughout the bootcamp but I have seen quite the improvement in my Backend code and thus making me proud of what I was able to accomplish.
 
-### Future Add-ons
+- Find the best way to integrate Cron as a late payment tracker without having previous knowledge of it.
+<!-- ### Future Add-ons
+
 
 - Add a profile picture in some sort of avatar to make it more personable;
 
 - Add a Chat component in order to let users interact in real-time and keep there chat logs saved;
 
-- Add a Review component in order to rate users in terms of how good they are in paying on time;
+- Add a Review component in order to rate users in terms of how good they are in paying on time; -->
