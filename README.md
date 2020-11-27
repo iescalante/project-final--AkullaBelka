@@ -1,12 +1,12 @@
 # AkullaBelka v1.0
 
-![AkullaBelka Logo](/client/src/assets/akullabelka_logo.svg)
+![AkullaBelka Logo](./akullalogo.png)
 
 What is AkullaBelka? This app is my final project for the Concordia Bootcamps.
 
 ![AkullaBelka Demo](./AkullaBelkaDemo.gif)
 
-To summarize, it's a small-money lending app which allows Borrowers and Lenders to interact with each other in monetary transactions; in other words, build relationships with money as well as trust while keeping a flow of money between the users.
+To summarize, it's a small money-lending app which allows Borrowers and Lenders to interact with each other in monetary transactions; in other words, build relationships with money as well as trust while keeping a flow of money between the users.
 
 ### Stack used:
 
