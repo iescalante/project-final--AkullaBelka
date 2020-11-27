@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import {useHistory} from "react-router-dom";
 import { AppContext } from "../AppContext";
 import Container from '../reusable-components/Container';
+import Footer from '../reusable-components/Footer';
 
 const CreateUser = () => {
     const {setUserData} = React.useContext(AppContext);
@@ -108,6 +109,7 @@ const CreateUser = () => {
             </LabelSignin>
             <InputSigninButton type="submit">CREATE ACCOUNT</InputSigninButton>
           </SigninForm>
+          <Footer/>
         </StyledContainer>
     )
 };

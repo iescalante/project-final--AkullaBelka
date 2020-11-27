@@ -1,8 +1,17 @@
 {
-    "name": "project-final--akullabelka",
-    "description": "A small money-lending app",
-    "version": "1.0.0",
-    "engines": {
-      "yarn": "1.22.4"
-    }
+  "name": "project-final--akullabelka",
+  "description": "A small money-lending app",
+  "version": "1.0.0",
+  "scripts": {
+    "server": "cd server && yarn nodemon index.js",
+    "client": "cd client && yarn react-scripts start",
+    "start": "concurrently \"yarn server\" \"yarn client\""
+  },
+  "license": "ISC",
+  "engines": {
+    "yarn": "1.22.4"
+  },
+  "dependencies": {
+    "concurrently": "^5.3.0"
   }
+}
