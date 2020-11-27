@@ -1,0 +1,8 @@
+{
+    "name": "project-final--akullabelka",
+    "description": "A small money-lending app",
+    "version": "1.0.0",
+    "engines": {
+      "node": "14.13.0"
+    }
+  }
