@@ -5,13 +5,13 @@
   "scripts": {
     "server": "cd server && node index.js",
     "client": "cd client && yarn react-scripts start",
-    "start": "concurrently \"yarn run server\" \"yarn run client\""
+    "start": "concurrently \"yarn run server\" \"yarn run client\"",
+    "heroku-postbuild": "cd client && yarn install && yarn run build"
   },
   "license": "ISC",
   "engines": {
     "yarn": "1.22.4",
-    "node": "14.13.0",
-    "npm": "6.14.8"
+    "node": "14.13.0"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
