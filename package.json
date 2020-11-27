@@ -6,7 +6,7 @@
     "server": "cd server && node index.js",
     "client": "cd client && yarn react-scripts start",
     "start": "concurrently \"yarn run server\" \"yarn run client\"",
-    "heroku-postbuild": "cd client && yarn install && yarn run build"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false yarn install yarn && run build"
   },
   "license": "ISC",
   "engines": {
