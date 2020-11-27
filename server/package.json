@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
-    "start-all": "concurrently \"yarn start\" \"cd ../client && yarn react-scripts start\""
+    "start": "nodemon index.js"
   },
   "author": "",
   "license": "ISC",

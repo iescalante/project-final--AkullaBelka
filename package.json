@@ -3,7 +3,7 @@
   "description": "A small money-lending app",
   "version": "1.0.0",
   "scripts": {
-    "server": "cd server && yarn nodemon index.js",
+    "server": "cd server && node index.js",
     "client": "cd client && yarn react-scripts start",
     "start": "concurrently \"yarn server\" \"yarn client\""
   },
