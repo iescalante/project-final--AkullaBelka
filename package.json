@@ -9,7 +9,9 @@
   },
   "license": "ISC",
   "engines": {
-    "yarn": "1.22.4"
+    "yarn": "1.22.4",
+    "node": "14.13.0",
+    "npm": "6.14.8"
   },
   "dependencies": {
     "concurrently": "^5.3.0"
