@@ -7,10 +7,6 @@
     "start": "nodemon index.js",
     "heroku-postbuild": "cd client && yarn install && yarn run build"
   },
-  "engines": {
-    "yarn": "1.22.4",
-    "node": "12.x"
-  },
   "author": "",
   "license": "ISC",
   "dependencies": {
