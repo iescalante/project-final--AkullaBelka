@@ -5,7 +5,7 @@
   "scripts": {
     "server": "cd server && node index.js",
     "client": "cd client && yarn react-scripts start",
-    "start": "concurrently \"yarn server\" \"yarn client\""
+    "start": "concurrently \"yarn run server\" \"yarn run client\""
   },
   "license": "ISC",
   "engines": {
