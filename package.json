@@ -11,7 +11,7 @@
   "license": "ISC",
   "engines": {
     "yarn": "1.22.4",
-    "node": "14.13.0"
+    "node": "12.x"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
