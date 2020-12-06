@@ -23,7 +23,7 @@ express()
   .use(morgan("tiny"))
   .use(bodyParser.json())
   .use(express.urlencoded({ extended: false }))
-  .use("/", express.static(__dirname + "/"))
+  // .use("/", express.static(__dirname + "/"))
   .use("/", routes)
 
   .listen(PORT, () => console.info(`Listening on port ${PORT}`));
