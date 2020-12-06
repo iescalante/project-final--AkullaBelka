@@ -21,9 +21,9 @@ express()
     next();
   })
   .use(morgan("tiny"))
+  .use("/", express.static("./client/build"))
   .use(bodyParser.json())
   .use(express.urlencoded({ extended: false }))
-  // .use("/", express.static(__dirname + "/"))
   .use("/", routes)
 
   .listen(PORT, () => console.info(`Listening on port ${PORT}`));
