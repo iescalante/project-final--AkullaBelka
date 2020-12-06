@@ -5,19 +5,19 @@ const transactions = require("./transactions");
 const rates = require("./rates");
 require("dotenv").config();
 
-routes.get("/", (req, res) => {
-  try {
-    return res.status(200).json({
-      success: true,
-      message: "Connected! Welcome to the BE of AkullaBelka",
-    });
-  } catch (err) {
-    return res.status(500).json({
-      success: false,
-      error: "Server Error",
-    });
-  }
-});
+// routes.get("/", (req, res) => {
+//   try {
+//     return res.status(200).json({
+//       success: true,
+//       message: "Connected! Welcome to the BE of AkullaBelka",
+//     });
+//   } catch (err) {
+//     return res.status(500).json({
+//       success: false,
+//       error: "Server Error",
+//     });
+//   }
+// });
 routes.use("/users", users);
 routes.use("/loans", loans);
 routes.use("/transactions", transactions);
