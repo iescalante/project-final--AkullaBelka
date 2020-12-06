@@ -1,15 +1,15 @@
-"use strict"
-const express = require('express');
+"use strict";
+const express = require("express");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const routes = require("./routes");
 require("dotenv").config();
-const { latePaymentScheduler } = require('./cronHandler');
+const { latePaymentScheduler } = require("./cronHandler");
 
-const PORT = 4000;
+const PORT = process.env.PORT || 4000;
 // latePaymentScheduler();
 express()
-  .use(function (req,res,next) {
+  .use(function (req, res, next) {
     res.header(
       "Access-Control-Allow-Methods",
       "OPTIONS, HEAD, GET, PUT, POST, DELETE"
@@ -22,7 +22,7 @@ express()
   })
   .use(morgan("tiny"))
   .use(bodyParser.json())
-  .use(express.urlencoded({ extended: false}))
+  .use(express.urlencoded({ extended: false }))
   .use("/", express.static(__dirname + "/"))
   .use("/", routes)
 
