@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false yarn install yarn && run build"
+    "start": "nodemon index.js"
   },
   "author": "",
   "license": "ISC",
